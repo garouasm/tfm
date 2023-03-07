@@ -1,0 +1,2 @@
+/home/bento/trusted-firmware-m/secure_fw/partitions/example_partition/CMakeFiles/rebuild_cache.dir
+/home/bento/trusted-firmware-m/secure_fw/partitions/example_partition/CMakeFiles/edit_cache.dir
