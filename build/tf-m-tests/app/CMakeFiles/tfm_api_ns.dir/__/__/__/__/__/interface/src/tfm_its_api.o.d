@@ -1,0 +1,19 @@
+tf-m-tests/app/CMakeFiles/tfm_api_ns.dir/__/__/__/__/__/interface/src/tfm_its_api.o: \
+ /home/sam/Desktop/trusted-firmware-m/interface/src/tfm_its_api.c \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/client.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa_config.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/error.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/internal_trusted_storage.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/storage_common.h \
+ /home/sam/Desktop/trusted-firmware-m/build/generated/interface/include/psa_manifest/sid.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/tfm_api.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/client.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/tfm_its_defs.h

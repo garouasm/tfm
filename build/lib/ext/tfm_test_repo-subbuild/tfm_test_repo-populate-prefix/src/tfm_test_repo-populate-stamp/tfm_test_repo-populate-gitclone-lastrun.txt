@@ -1,0 +1,3 @@
+repository='https://git.trustedfirmware.org/TF-M/tf-m-tests.git'
+module=''
+tag='origin'

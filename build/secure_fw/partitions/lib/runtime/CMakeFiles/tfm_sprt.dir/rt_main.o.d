@@ -1,0 +1,26 @@
+secure_fw/partitions/lib/runtime/CMakeFiles/tfm_sprt.dir/rt_main.o: \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/partitions/lib/runtime/rt_main.c \
+ /home/sam/Desktop/trusted-firmware-m/platform/include/cmsis_override.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/include/compiler_ext_defs.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/spm/include/interface/runtime_defs.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/error.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/service.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa/client.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa_config.h \
+ /home/sam/Desktop/trusted-firmware-m/build/generated/interface/include/config_impl.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/include/config_tfm.h \
+ /home/sam/Desktop/trusted-firmware-m/config/config_base.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/config_tfm_target.h \
+ /home/sam/Desktop/trusted-firmware-m/interface/include/psa_interface_redirect.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/spm/include/config_spm.h \
+ /home/sam/Desktop/trusted-firmware-m/build/generated/interface/include/psa/framework_feature.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/partitions/lib/runtime/sprt_partition_metadata_indicator.h \
+ /home/sam/Desktop/trusted-firmware-m/secure_fw/partitions/lib/runtime/include/rt_main.h

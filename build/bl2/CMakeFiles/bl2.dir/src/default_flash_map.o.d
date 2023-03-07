@@ -1,0 +1,24 @@
+bl2/CMakeFiles/bl2.dir/src/default_flash_map.o: \
+ /home/sam/Desktop/trusted-firmware-m/bl2/src/default_flash_map.c \
+ /home/sam/Desktop/trusted-firmware-m/platform/include/cmsis_override.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h \
+ /home/sam/Desktop/trusted-firmware-m/bl2/ext/mcuboot/include/flash_map/flash_map.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/inttypes.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/newlib-nano/newlib.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ /opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/flash_layout.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/./ext/driver/Driver_Flash.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/./ext/driver/Driver_Common.h \
+ /home/sam/Desktop/trusted-firmware-m/bl2/ext/mcuboot/include/target.h \
+ /home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/flash_layout.h

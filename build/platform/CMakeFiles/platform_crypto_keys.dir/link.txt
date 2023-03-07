@@ -1,0 +1,2 @@
+/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ar qc libplatform_crypto_keys.a CMakeFiles/platform_crypto_keys.dir/ext/common/template/crypto_keys.o
+/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ranlib libplatform_crypto_keys.a

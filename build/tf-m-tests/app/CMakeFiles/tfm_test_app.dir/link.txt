@@ -1,0 +1,2 @@
+/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ar qc libtfm_test_app.a CMakeFiles/tfm_test_app.dir/test_app.o CMakeFiles/tfm_test_app.dir/__/log/tfm_log_raw.o
+/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ranlib libtfm_test_app.a

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/CMakeFiles/qcbor-populate"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/CMakeFiles/qcbor-populate.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/CMakeFiles/qcbor-populate-complete.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-build.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-configure.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-download.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-install.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-patch.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-test.rule"
+		},
+		{
+			"file" : "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-subbuild/qcbor-populate-prefix/src/qcbor-populate-stamp/qcbor-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"qcbor-populate"
+		],
+		"name" : "qcbor-populate"
+	}
+}
