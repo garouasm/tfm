@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tfm_fih.dir/src/fih.o"
-  "CMakeFiles/tfm_fih.dir/src/fih.o.d"
   "libtfm_fih.a"
   "libtfm_fih.pdb"
 )

@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/signing_layout_ns.dir/signing_layout_ns.o"
-  "CMakeFiles/signing_layout_ns.dir/signing_layout_ns.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

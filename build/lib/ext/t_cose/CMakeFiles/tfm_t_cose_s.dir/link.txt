@@ -1,2 +1,2 @@
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ar qc libtfm_t_cose_s.a CMakeFiles/tfm_t_cose_s.dir/src/t_cose_sign1_sign.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_sign1_verify.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_util.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_parameters.o CMakeFiles/tfm_t_cose_s.dir/crypto_adapters/t_cose_psa_crypto.o
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-ranlib libtfm_t_cose_s.a
+/usr/bin/arm-none-eabi-ar qc libtfm_t_cose_s.a  CMakeFiles/tfm_t_cose_s.dir/src/t_cose_sign1_sign.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_sign1_verify.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_util.o CMakeFiles/tfm_t_cose_s.dir/src/t_cose_parameters.o CMakeFiles/tfm_t_cose_s.dir/crypto_adapters/t_cose_psa_crypto.o
+/usr/bin/arm-none-eabi-ranlib libtfm_t_cose_s.a

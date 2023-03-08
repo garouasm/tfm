@@ -1,8 +1,8 @@
-# Install script for directory: /home/sam/Desktop/trusted-firmware-m/build/lib/ext/mbedcrypto-src/library
+# Install script for directory: /home/bento/trusted-firmware-m/tfm/build/lib/ext/mbedcrypto-src/library
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sam/Desktop/trusted-firmware-m/build/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bento/trusted-firmware-m/tfm/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,44 +32,39 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objdump")
-endif()
-
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install/libmbedcrypto.a")
+   "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install/libmbedcrypto.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/library/libmbedcrypto.a")
+file(INSTALL DESTINATION "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/library/libmbedcrypto.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install/libmbedx509.a")
+   "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install/libmbedx509.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/library/libmbedx509.a")
+file(INSTALL DESTINATION "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/library/libmbedx509.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install/libmbedtls.a")
+   "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install/libmbedtls.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/sam/Desktop/trusted-firmware-m/build/bl2/mbedcrypto/library/libmbedtls.a")
+file(INSTALL DESTINATION "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/install" TYPE STATIC_LIBRARY FILES "/home/bento/trusted-firmware-m/tfm/build/bl2/mbedcrypto/library/libmbedtls.a")
 endif()
 

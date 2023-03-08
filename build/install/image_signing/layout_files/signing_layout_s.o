@@ -1,21 +1,21 @@
-# 1 "/home/sam/Desktop/trusted-firmware-m/build/bl2/ext/mcuboot/signing_layout_s.c"
-# 1 "/home/sam/Desktop/trusted-firmware-m/build/bl2/ext/mcuboot//"
+# 1 "/home/bento/trusted-firmware-m/tfm/build/bl2/ext/mcuboot/signing_layout_s.c"
+# 1 "/home/bento/trusted-firmware-m/tfm/build/bl2/ext/mcuboot//"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "/home/sam/Desktop/trusted-firmware-m/platform/include/cmsis_override.h" 1
+# 1 "/home/bento/trusted-firmware-m/tfm/platform/include/cmsis_override.h" 1
 # 1 "<command-line>" 2
-# 1 "/home/sam/Desktop/trusted-firmware-m/build/bl2/ext/mcuboot/signing_layout_s.c"
+# 1 "/home/bento/trusted-firmware-m/tfm/build/bl2/ext/mcuboot/signing_layout_s.c"
 
 
 
 
 
 
-# 1 "/home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h" 1
-# 19 "/home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h"
-# 1 "/home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/flash_layout.h" 1
-# 20 "/home/sam/Desktop/trusted-firmware-m/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h" 2
-# 8 "/home/sam/Desktop/trusted-firmware-m/build/bl2/ext/mcuboot/signing_layout_s.c" 2
+# 1 "/home/bento/trusted-firmware-m/tfm/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h" 1
+# 19 "/home/bento/trusted-firmware-m/tfm/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h"
+# 1 "/home/bento/trusted-firmware-m/tfm/platform/ext/target/stm/nucleo_l552ze_q/include/flash_layout.h" 1
+# 20 "/home/bento/trusted-firmware-m/tfm/platform/ext/target/stm/nucleo_l552ze_q/include/region_defs.h" 2
+# 8 "/home/bento/trusted-firmware-m/tfm/build/bl2/ext/mcuboot/signing_layout_s.c" 2
 
 
 

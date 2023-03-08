@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tfm_test_app.dir/__/log/tfm_log_raw.o"
-  "CMakeFiles/tfm_test_app.dir/__/log/tfm_log_raw.o.d"
   "CMakeFiles/tfm_test_app.dir/test_app.o"
-  "CMakeFiles/tfm_test_app.dir/test_app.o.d"
   "libtfm_test_app.a"
   "libtfm_test_app.pdb"
 )

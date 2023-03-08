@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bl2_scatter.dir/__/common/hal/template/gcc/bl2.ld"
-  "CMakeFiles/bl2_scatter.dir/__/common/hal/template/gcc/bl2.ld.d"
 )
 
 # Per-language clean rules from dependency scanning.

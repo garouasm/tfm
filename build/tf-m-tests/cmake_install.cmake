@@ -1,8 +1,8 @@
-# Install script for directory: /home/sam/Desktop/trusted-firmware-m/build/lib/ext/tfm_test_repo-src
+# Install script for directory: /home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sam/Desktop/trusted-firmware-m/build/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bento/trusted-firmware-m/tfm/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,23 +32,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objdump")
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/bento/trusted-firmware-m/tfm/build/tf-m-tests/log/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/tf-m-tests/log/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/tf-m-tests/app/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/tf-m-tests/app/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/tf-m-tests/test/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/tf-m-tests/test/cmake_install.cmake")
 endif()
 

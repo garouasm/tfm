@@ -1,7 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.16.3)
 
 # We name the project and the target for the ExternalProject_Add() call
 # to something that will highlight to the user what we are working on if
@@ -9,21 +9,11 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(qcbor-populate NONE)
 
-
-# Pass through things we've already detected in the main project to avoid
-# paying the cost of redetecting them again in ExternalProject_Add()
-set(GIT_EXECUTABLE [==[/usr/bin/git]==])
-set(GIT_VERSION_STRING [==[2.34.1]==])
-set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
-  [==[/usr/bin/git;2.34.1]==]
-)
-
-
 include(ExternalProject)
 ExternalProject_Add(qcbor-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/laurencelundblade/QCBOR.git" "GIT_TAG" "b0e70332" "GIT_PROGRESS" "TRUE"
-                    SOURCE_DIR          "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-src"
-                    BINARY_DIR          "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/qcbor-build"
+                    SOURCE_DIR          "/home/bento/trusted-firmware-m/tfm/build/lib/ext/qcbor-src"
+                    BINARY_DIR          "/home/bento/trusted-firmware-m/tfm/build/lib/ext/qcbor-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""
@@ -31,5 +21,3 @@ ExternalProject_Add(qcbor-populate
                     USES_TERMINAL_DOWNLOAD  YES
                     USES_TERMINAL_UPDATE    YES
 )
-
-

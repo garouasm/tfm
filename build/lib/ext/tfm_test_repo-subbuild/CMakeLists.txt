@@ -1,7 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.16.3)
 
 # We name the project and the target for the ExternalProject_Add() call
 # to something that will highlight to the user what we are working on if
@@ -9,21 +9,11 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project(tfm_test_repo-populate NONE)
 
-
-# Pass through things we've already detected in the main project to avoid
-# paying the cost of redetecting them again in ExternalProject_Add()
-set(GIT_EXECUTABLE [==[/usr/bin/git]==])
-set(GIT_VERSION_STRING [==[2.34.1]==])
-set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
-  [==[/usr/bin/git;2.34.1]==]
-)
-
-
 include(ExternalProject)
 ExternalProject_Add(tfm_test_repo-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://git.trustedfirmware.org/TF-M/tf-m-tests.git" "GIT_TAG" "4c4b580" "GIT_PROGRESS" "TRUE" "" ""
-                    SOURCE_DIR          "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/tfm_test_repo-src"
-                    BINARY_DIR          "/home/sam/Desktop/trusted-firmware-m/build/lib/ext/tfm_test_repo-build"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://git.trustedfirmware.org/TF-M/tf-m-tests.git" "GIT_TAG" "4c4b580" "GIT_PROGRESS" "TRUE"
+                    SOURCE_DIR          "/home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-src"
+                    BINARY_DIR          "/home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""
@@ -31,5 +21,3 @@ ExternalProject_Add(tfm_test_repo-populate
                     USES_TERMINAL_DOWNLOAD  YES
                     USES_TERMINAL_UPDATE    YES
 )
-
-

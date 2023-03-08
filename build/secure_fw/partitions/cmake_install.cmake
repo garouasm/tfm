@@ -1,8 +1,8 @@
-# Install script for directory: /home/sam/Desktop/trusted-firmware-m/secure_fw/partitions
+# Install script for directory: /home/bento/trusted-firmware-m/tfm/secure_fw/partitions
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sam/Desktop/trusted-firmware-m/build/install")
+  set(CMAKE_INSTALL_PREFIX "/home/bento/trusted-firmware-m/tfm/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -32,63 +32,58 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objdump")
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/lib/runtime/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/lib/runtime/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/crypto/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/crypto/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/example_partition/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/example_partition/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/initial_attestation/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/initial_attestation/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/protected_storage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/protected_storage/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/internal_trusted_storage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/internal_trusted_storage/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/platform/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/platform/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/firmware_update/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/firmware_update/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/ns_agent_tz/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/ns_agent_tz/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/ns_agent_mailbox/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/ns_agent_mailbox/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/sam/Desktop/trusted-firmware-m/build/secure_fw/partitions/idle_partition/cmake_install.cmake")
+  include("/home/bento/trusted-firmware-m/tfm/build/secure_fw/partitions/idle_partition/cmake_install.cmake")
 endif()
 

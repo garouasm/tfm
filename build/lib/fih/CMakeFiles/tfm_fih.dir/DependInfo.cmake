@@ -1,14 +1,27 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "C"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/home/bento/trusted-firmware-m/tfm/lib/fih/src/fih.c" "/home/bento/trusted-firmware-m/tfm/build/lib/fih/CMakeFiles/tfm_fih.dir/src/fih.o"
+  )
+set(CMAKE_C_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_C
+  "STM32L552xx"
+  "TFM_FIH_PROFILE_OFF"
   )
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sam/Desktop/trusted-firmware-m/lib/fih/src/fih.c" "lib/fih/CMakeFiles/tfm_fih.dir/src/fih.o" "gcc" "lib/fih/CMakeFiles/tfm_fih.dir/src/fih.o.d"
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../lib/fih/inc"
+  "../platform/./ext"
+  "../platform/./ext/cmsis"
+  "../platform/./ext/common"
+  "../platform/./ext/driver"
+  "../platform/./include"
   )
 
 # Targets to which this target links.

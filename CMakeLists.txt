@@ -43,7 +43,7 @@ endif()
 include(${TFM_TOOLCHAIN_FILE})
 set(CMAKE_PROJECT_INCLUDE_BEFORE ${CMAKE_SOURCE_DIR}/cmake/disable_compiler_detection.cmake)
 
-project("Trusted Firmware M" VERSION ${TFM_VERSION} LANGUAGES C ASM)
+project("Trusted Firmware M" VERSION 1.6.0 LANGUAGES C ASM)
 tfm_toolchain_reload_compiler()
 
 # Synchronise the install path variables. If CMAKE_INSTALL_PREFIX is manually

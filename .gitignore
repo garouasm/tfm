@@ -15,4 +15,4 @@
 *.orig
 **/__pycache__
 *.pyc
-
+build*/

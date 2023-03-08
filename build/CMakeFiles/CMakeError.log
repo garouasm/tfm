@@ -1,31 +1,31 @@
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-Compiler: /opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc 
+Compiler: /usr/bin/arm-none-eabi-gcc 
 Build flags: -mcpu=cortex-m33+nofp
 Id flags:  
 
 The output was:
 1
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/bin/ld: /opt/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libc.a(lib_a-exit.o): in function `exit':
-exit.c:(.text.exit+0x16): undefined reference to `_exit'
+/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libc.a(lib_a-exit.o): in function `exit':
+/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/thumb/v8-m.main/nofp/newlib/libc/stdlib/../../../../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
 collect2: error: ld returned 1 exit status
 
 
 Performing C SOURCE FILE Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS failed with the following output:
-Change Dir: /home/sam/Desktop/trusted-firmware-m/build/CMakeFiles/CMakeTmp
+Change Dir: /home/bento/trusted-firmware-m/tfm/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9509c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9509c.dir/build.make CMakeFiles/cmTC_9509c.dir/build
-gmake[1]: Entering directory '/home/sam/Desktop/trusted-firmware-m/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9509c.dir/src.o
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -DC_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS  -mcpu=cortex-m33+nofp -Wall -Wextra -Wwrite-strings -Wformat=2 -Wno-format-nonliteral -Wvla -Wlogical-op -Wshadow    -Wformat-signedness -o CMakeFiles/cmTC_9509c.dir/src.o -c /home/sam/Desktop/trusted-firmware-m/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_9509c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9509c.dir/link.txt --verbose=1
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc -mcpu=cortex-m33+nofp -Wall -Wextra -Wwrite-strings -Wformat=2 -Wno-format-nonliteral -Wvla -Wlogical-op -Wshadow  CMakeFiles/cmTC_9509c.dir/src.o -o cmTC_9509c 
-/opt/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/bin/ld: /opt/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libc.a(lib_a-exit.o): in function `exit':
-exit.c:(.text.exit+0x16): undefined reference to `_exit'
+Run Build Command(s):/usr/bin/make cmTC_46d7c/fast && /usr/bin/make -f CMakeFiles/cmTC_46d7c.dir/build.make CMakeFiles/cmTC_46d7c.dir/build
+make[1]: Entering directory '/home/bento/trusted-firmware-m/tfm/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_46d7c.dir/src.o
+/usr/bin/arm-none-eabi-gcc   -mcpu=cortex-m33+nofp -Wall -Wextra -Wwrite-strings -Wformat=2 -Wno-format-nonliteral -Wvla -Wlogical-op -Wshadow -DC_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS   -Wformat-signedness -o CMakeFiles/cmTC_46d7c.dir/src.o   -c /home/bento/trusted-firmware-m/tfm/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_46d7c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_46d7c.dir/link.txt --verbose=1
+/usr/bin/arm-none-eabi-gcc -mcpu=cortex-m33+nofp -Wall -Wextra -Wwrite-strings -Wformat=2 -Wno-format-nonliteral -Wvla -Wlogical-op -Wshadow -DC_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS    CMakeFiles/cmTC_46d7c.dir/src.o  -o cmTC_46d7c 
+/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libc.a(lib_a-exit.o): in function `exit':
+/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/thumb/v8-m.main/nofp/newlib/libc/stdlib/../../../../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
 collect2: error: ld returned 1 exit status
-gmake[1]: *** [CMakeFiles/cmTC_9509c.dir/build.make:99: cmTC_9509c] Error 1
-gmake[1]: Leaving directory '/home/sam/Desktop/trusted-firmware-m/build/CMakeFiles/CMakeTmp'
-gmake: *** [Makefile:127: cmTC_9509c/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_46d7c.dir/build.make:87: cmTC_46d7c] Error 1
+make[1]: Leaving directory '/home/bento/trusted-firmware-m/tfm/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_46d7c/fast] Error 2
 
 
 Source file was:

@@ -12,7 +12,7 @@
  * Defines for TFM version.
  */
 /* #undef TFM_VERSION */
-#define TFM_VERSION_FULL   aa78850
+#define TFM_VERSION_FULL   805c30f
 
 #define VERSTR(x)          #x
 #define VERCON(x)          VERSTR(x)
