@@ -342,11 +342,9 @@ psa_status_t tfm_crypto_init(void)
 
 psa_status_t tfm_crypto_sfn(const psa_msg_t *msg)
 {
-    LOG_INFFMT("CRYPTO_SFN\r\n");
     /* Process the message type */
     switch (msg->type) {
     case PSA_IPC_CALL:
-        LOG_INFFMT("CRYPTO_SFN\r\n");
         return tfm_crypto_call_srv(msg);
     default:
         return PSA_ERROR_NOT_SUPPORTED;
