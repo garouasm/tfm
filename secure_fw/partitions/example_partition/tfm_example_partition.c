@@ -17,6 +17,7 @@
 
 #define PSA_KEY_ID_USER_1 ((psa_key_id_t)0x1)
 #define PSA_KEY_ID_USER_2 ((psa_key_id_t)0x22222222)
+#define IV_SIZE 16
 
 /**
  * \brief An example service implementation that prints out an argument from the
@@ -67,6 +68,14 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     out_cypher_setup[0].base = &setup_handle;
     out_cypher_setup[0].len = sizeof(uint32_t);
 
+    //initialize generate_iv call structures
+    unsigned char iv[IV_SIZE];
+    size_t iv_size = sizeof(iv);
+    struct psa_outvec out_iv[1];
+
+    out_iv[0].base = &iv;
+    out_iv[0].len = iv_size;
+
     switch (msg->type) {
     case PSA_IPC_CALL:
 
@@ -92,8 +101,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         iov.function_id = TFM_CRYPTO_CIPHER_ENCRYPT_SETUP_SID; 
         iov.op_handle = op_handle.handle;
         iov.alg = PSA_ALG_CFB;
-
-        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 2, out_cypher_setup, 1);
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_cypher_setup, 1);
 
         if (status != PSA_SUCCESS){
             LOG_INFFMT("Encrypt setup failed\r\n");
@@ -101,6 +109,23 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
             }
 
         else LOG_INFFMT("Encrypt setup successful\r\n");
+
+        //a call to generate Initialization vector(IV)
+        iov.function_id = TFM_CRYPTO_CIPHER_GENERATE_IV_SID;
+        iov.op_handle = setup_handle;
+
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_iv, 1);
+
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Generate IV failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Generate IV successful\r\n");
+
+        //a call to encrypt x blocks
+
+       
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
