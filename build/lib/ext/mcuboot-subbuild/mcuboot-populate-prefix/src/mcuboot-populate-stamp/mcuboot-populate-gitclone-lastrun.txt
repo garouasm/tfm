@@ -1,3 +1,0 @@
-repository='https://github.com/mcu-tools/mcuboot.git'
-module=''
-tag='origin'

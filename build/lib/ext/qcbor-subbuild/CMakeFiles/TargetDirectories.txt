@@ -1,3 +1,0 @@
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/qcbor-subbuild/CMakeFiles/rebuild_cache.dir
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/qcbor-subbuild/CMakeFiles/edit_cache.dir
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/qcbor-subbuild/CMakeFiles/qcbor-populate.dir

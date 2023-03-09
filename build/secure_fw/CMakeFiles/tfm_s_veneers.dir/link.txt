@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libtfm_s_veneers.a  s_veneers.o
-/usr/bin/arm-none-eabi-ranlib libtfm_s_veneers.a

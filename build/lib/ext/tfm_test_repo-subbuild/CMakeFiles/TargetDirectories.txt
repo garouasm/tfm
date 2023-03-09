@@ -1,3 +1,0 @@
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-subbuild/CMakeFiles/rebuild_cache.dir
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-subbuild/CMakeFiles/edit_cache.dir
-/home/bento/trusted-firmware-m/tfm/build/lib/ext/tfm_test_repo-subbuild/CMakeFiles/tfm_test_repo-populate.dir

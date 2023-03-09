@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libtfm_fih.a  CMakeFiles/tfm_fih.dir/src/fih.o
-/usr/bin/arm-none-eabi-ranlib libtfm_fih.a

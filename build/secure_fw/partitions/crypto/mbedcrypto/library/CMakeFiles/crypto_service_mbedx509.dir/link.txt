@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libmbedx509.a  CMakeFiles/crypto_service_mbedx509.dir/x509.o CMakeFiles/crypto_service_mbedx509.dir/x509_create.o CMakeFiles/crypto_service_mbedx509.dir/x509_crl.o CMakeFiles/crypto_service_mbedx509.dir/x509_crt.o CMakeFiles/crypto_service_mbedx509.dir/x509_csr.o CMakeFiles/crypto_service_mbedx509.dir/x509write_crt.o CMakeFiles/crypto_service_mbedx509.dir/x509write_csr.o
-/usr/bin/arm-none-eabi-ranlib libmbedx509.a

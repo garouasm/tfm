@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libtfm_qcbor_s.a  CMakeFiles/tfm_qcbor_s.dir/__/qcbor-src/src/ieee754.o CMakeFiles/tfm_qcbor_s.dir/__/qcbor-src/src/qcbor_encode.o CMakeFiles/tfm_qcbor_s.dir/__/qcbor-src/src/qcbor_decode.o CMakeFiles/tfm_qcbor_s.dir/__/qcbor-src/src/UsefulBuf.o
-/usr/bin/arm-none-eabi-ranlib libtfm_qcbor_s.a

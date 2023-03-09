@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libbl2_crypto_hw.a  CMakeFiles/bl2_crypto_hw.dir/__/target/stm/common/hal/accelerator/sha1_alt.o CMakeFiles/bl2_crypto_hw.dir/__/target/stm/common/hal/accelerator/sha256_alt.o CMakeFiles/bl2_crypto_hw.dir/__/target/stm/common/hal/accelerator/stm.o
-/usr/bin/arm-none-eabi-ranlib libbl2_crypto_hw.a

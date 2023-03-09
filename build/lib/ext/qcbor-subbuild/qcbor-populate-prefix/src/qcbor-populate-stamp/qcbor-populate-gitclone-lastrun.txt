@@ -1,3 +1,0 @@
-repository='https://github.com/laurencelundblade/QCBOR.git'
-module=''
-tag='origin'

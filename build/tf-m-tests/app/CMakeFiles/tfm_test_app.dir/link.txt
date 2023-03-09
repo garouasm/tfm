@@ -1,2 +1,0 @@
-/usr/bin/arm-none-eabi-ar qc libtfm_test_app.a  CMakeFiles/tfm_test_app.dir/test_app.o CMakeFiles/tfm_test_app.dir/__/log/tfm_log_raw.o
-/usr/bin/arm-none-eabi-ranlib libtfm_test_app.a
