@@ -28,9 +28,9 @@ BINPATH="$SCRIPTPATH/bin"
 
 echo "Write TFM_Appli Secure"
 # part ot be updated according to flash_layout.h
-slot0=
-slot1=
-boot=
+slot0=0xc014000
+slot1=0xc041000
+boot=0xc000000
 unused=
 #since drag an drop is not supporting flash secure alias, address is conververted to non secure flash alias
 let image_s=$slot0-0x4000000

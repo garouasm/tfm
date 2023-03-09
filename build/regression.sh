@@ -20,7 +20,7 @@ fi
 PATH="/C/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/":$PATH
 stm32programmercli="STM32_Programmer_CLI"
 # remove write protection
-secbootadd0=0x180030
+secbootadd0=0x180000
 connect="-c port=SWD "$sn_option" mode=UR --hardRst"
 connect_no_reset="-c port=SWD "$sn_option" mode=HotPlug"
 rdp_0="-ob RDP=0xAA TZEN=1"

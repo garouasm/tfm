@@ -74,7 +74,16 @@ tf-m-tests/app/CMakeFiles/tfm_ns.dir/__/ns_interface/ns_client_ext/tz_shim_layer
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/__/ns_interface/ns_client_ext/tz_shim_layer.o: lib/ext/tfm_test_repo-src/CMSIS/RTOS2/RTX/Include/tz_context.h
 
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/client.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_client_struct.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_compat.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_extra.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_sizes.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_struct.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_types.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/crypto_values.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/error.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa/service.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa_config.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/psa_interface_redirect.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: ../interface/include/tfm_api.h
@@ -131,6 +140,7 @@ tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: lib/ext/tfm_test_repo-src/app/te
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: lib/ext/tfm_test_repo-src/app/tfm_log.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: generated/interface/include/config_impl.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: generated/interface/include/psa/framework_feature.h
+tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: generated/interface/include/psa_manifest/sid.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: lib/ext/tfm_test_repo-src/CMSIS/RTOS2/Include/cmsis_os2.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: lib/ext/tfm_test_repo-src/log/tfm_log_raw.h
 tf-m-tests/app/CMakeFiles/tfm_ns.dir/main_ns.o: lib/ext/tfm_test_repo-src/ns_interface/ns_client_ext/tfm_nsid_manager.h

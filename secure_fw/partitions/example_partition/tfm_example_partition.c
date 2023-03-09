@@ -59,6 +59,14 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     outvecs[0].base = &user_key;
     outvecs[0].len = sizeof(psa_key_id_t);
 
+    //initialize cypher call structures
+    uint32_t setup_handle;
+    psa_cipher_operation_t op_handle = PSA_CIPHER_OPERATION_INIT;
+    struct psa_outvec out_cypher_setup[1];
+
+    out_cypher_setup[0].base = &setup_handle;
+    out_cypher_setup[0].len = sizeof(uint32_t);
+
     switch (msg->type) {
     case PSA_IPC_CALL:
 
@@ -67,6 +75,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         // a call to destroy a previously stored key
         iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
         status = psa_call(0x40000100U,PSA_IPC_CALL,destroy_in, 1, NULL, 0);
+
 
         //a call to generate key
         iov.function_id = TFM_CRYPTO_GENERATE_KEY_SID;
@@ -77,10 +86,29 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
             return PSA_ERROR_PROGRAMMER_ERROR;
             }
 
-        else {
-                LOG_INFFMT("Key generated successfully\r\n");
-                psa_destroy_key(PSA_KEY_ID_USER_1);
-        }
+        else LOG_INFFMT("Key generated successfully\r\n");
+                
+        //a call to cipher encrypt setup 
+        iov.function_id = TFM_CRYPTO_CIPHER_ENCRYPT_SETUP_SID; 
+        iov.op_handle = op_handle.handle;
+        iov.alg = PSA_ALG_CFB;
+
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 2, out_cypher_setup, 1);
+
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Encrypt setup failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Encrypt setup successful\r\n");
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        //destroy key
+        iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
+        status = psa_call(0x40000100U,PSA_IPC_CALL,destroy_in, 1, NULL, 0);
+
         return PSA_SUCCESS;
 
     default:
