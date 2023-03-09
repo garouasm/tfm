@@ -76,10 +76,32 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     out_iv[0].base = &iv;
     out_iv[0].len = iv_size;
 
+    //initialize encryption structures
+    const uint8_t hello_msg[] = "Hello World";
+    size_t out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(hello_msg));
+    unsigned char cipher_msg[out_msg_size];
+    struct psa_invec in_msg[2];
+    struct psa_outvec out_msg[1];
+
+    in_msg[0].base = &iov;
+    in_msg[0].len = sizeof(struct tfm_crypto_pack_iovec);
+    in_msg[1].base = &hello_msg;
+    in_msg[1].len = sizeof(hello_msg);
+
+    out_msg[0].base = &cipher_msg;
+    out_msg[0].len = out_msg_size;
+
+    //initialize finish cipher
+    uint8_t out_finish;
+    out_msg[1].base = &out_finish;
+    out_msg[1].len = sizeof(out_finish);
+
+
     switch (msg->type) {
     case PSA_IPC_CALL:
 
         LOG_INFFMT("Hello secure world! \r\n");
+////////////////////////////////////////////ENCRYPTION//////////////////////////////////////////////////////////////
 
         // a call to destroy a previously stored key
         iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
@@ -124,11 +146,54 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         else LOG_INFFMT("Generate IV successful\r\n");
 
         //a call to encrypt x blocks
+        iov.function_id = TFM_CRYPTO_CIPHER_UPDATE_SID;
+        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 2, out_msg, 1);
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Cipher update failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
 
+        else LOG_INFFMT("Cipher update successful\r\n");
+
+        LOG_INFFMT("%s\r\n", hello_msg);
+        LOG_INFFMT("%s\r\n", cipher_msg);
+
+        //finish cipher
+        iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
+        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Cipher finish failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Cipher finish successful\r\n");
        
 
+////////////////////////////////////////////DECRYPTION//////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //a call to cipher encrypt setup 
+        iov.function_id = TFM_CRYPTO_CIPHER_DECRYPT_SETUP_SID; 
+        iov.op_handle = op_handle.handle;
+        iov.alg = PSA_ALG_CFB;
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_cypher_setup, 1);
+
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Decrypt setup failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Decrypt setup successful\r\n");
+
+
+
+
+
+
+
+
+
+
         
         //destroy key
         iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
