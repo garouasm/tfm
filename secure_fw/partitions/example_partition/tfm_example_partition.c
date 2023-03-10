@@ -29,12 +29,13 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 
     struct tfm_crypto_pack_iovec iov;
     iov.key_id = PSA_KEY_ID_USER_1;
+    iov.alg = PSA_ALG_CFB;
 
     //initialize key attributes
     psa_key_attributes_t key_attributes = psa_key_attributes_init();
 
     psa_set_key_lifetime(&key_attributes, PSA_KEY_LIFETIME_PERSISTENT);
-    psa_set_key_usage_flags(&key_attributes,PSA_KEY_USAGE_ENCRYPT);
+    psa_set_key_usage_flags(&key_attributes,(PSA_KEY_USAGE_ENCRYPT | PSA_KEY_USAGE_DECRYPT));
     psa_set_key_algorithm(&key_attributes,PSA_ALG_CFB);
     psa_set_key_type(&key_attributes, PSA_KEY_TYPE_AES);
     psa_set_key_bits(&key_attributes, 256);
@@ -63,10 +64,10 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     //initialize cypher call structures
     uint32_t setup_handle;
     psa_cipher_operation_t op_handle = PSA_CIPHER_OPERATION_INIT;
-    struct psa_outvec out_cypher_setup[1];
+    struct psa_outvec out_enc_cypher_setup[1];
 
-    out_cypher_setup[0].base = &setup_handle;
-    out_cypher_setup[0].len = sizeof(uint32_t);
+    out_enc_cypher_setup[0].base = &op_handle;
+    out_enc_cypher_setup[0].len = sizeof(uint32_t);
 
     //initialize generate_iv call structures
     unsigned char iv[IV_SIZE];
@@ -81,7 +82,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     size_t out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(hello_msg));
     unsigned char cipher_msg[out_msg_size];
     struct psa_invec in_msg[2];
-    struct psa_outvec out_msg[1];
+    struct psa_outvec out_msg[2];
 
     in_msg[0].base = &iov;
     in_msg[0].len = sizeof(struct tfm_crypto_pack_iovec);
@@ -93,14 +94,33 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 
     //initialize finish cipher
     uint8_t out_finish;
+
     out_msg[1].base = &out_finish;
     out_msg[1].len = sizeof(out_finish);
 
+    //initialize decrypt cipher structures
+    struct psa_outvec out_dec_cypher_setup[1];
+    uint8_t original_hello_msg[out_msg_size];
+    psa_cipher_operation_t op_handle_dec = PSA_CIPHER_OPERATION_INIT;
+    out_dec_cypher_setup[0].base = &op_handle_dec;
+    out_dec_cypher_setup[0].len = sizeof(uint32_t);
 
+
+    //initialize set_iv decrypt
+    struct psa_invec in_iv[2];
+    struct psa_outvec out_iv2[1];
+
+    in_iv[0].base = &iov;
+    in_iv[0].len = sizeof(struct tfm_crypto_pack_iovec);
+    in_iv[1].len = iv_size;
+    out_iv2[1].base = &setup_handle;
+    out_iv2[1].len = sizeof(setup_handle);
+
+    
     switch (msg->type) {
     case PSA_IPC_CALL:
 
-        LOG_INFFMT("Hello secure world! \r\n");
+        // LOG_INFFMT("Hello secure world! \r\n");
 ////////////////////////////////////////////ENCRYPTION//////////////////////////////////////////////////////////////
 
         // a call to destroy a previously stored key
@@ -122,8 +142,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         //a call to cipher encrypt setup 
         iov.function_id = TFM_CRYPTO_CIPHER_ENCRYPT_SETUP_SID; 
         iov.op_handle = op_handle.handle;
-        iov.alg = PSA_ALG_CFB;
-        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_cypher_setup, 1);
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_enc_cypher_setup, 1);
 
         if (status != PSA_SUCCESS){
             LOG_INFFMT("Encrypt setup failed\r\n");
@@ -134,7 +153,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 
         //a call to generate Initialization vector(IV)
         iov.function_id = TFM_CRYPTO_CIPHER_GENERATE_IV_SID;
-        iov.op_handle = setup_handle;
+        iov.op_handle = op_handle.handle;
 
         status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_iv, 1);
 
@@ -155,28 +174,38 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 
         else LOG_INFFMT("Cipher update successful\r\n");
 
-        LOG_INFFMT("%s\r\n", hello_msg);
-        LOG_INFFMT("%s\r\n", cipher_msg);
+        LOG_INFFMT("%s \r\n", hello_msg);
+        LOG_INFFMT("%s \r\n", cipher_msg);
 
-        //finish cipher
-        iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
-        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);
-        if (status != PSA_SUCCESS){
-            LOG_INFFMT("Cipher finish failed\r\n");
-            return PSA_ERROR_PROGRAMMER_ERROR;
-            }
+        // //finish cipher
+        // iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
+        // status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);
+        // if (status != PSA_SUCCESS){
+        //     LOG_INFFMT("Cipher finish failed\r\n");
+        //     return PSA_ERROR_PROGRAMMER_ERROR;
+        //     }
 
-        else LOG_INFFMT("Cipher finish successful\r\n");
+        // else LOG_INFFMT("Cipher finish successful\r\n");
        
-
 ////////////////////////////////////////////DECRYPTION//////////////////////////////////////////////////////////////
+         //initialize decryption structures
+        out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(cipher_msg));
 
+        in_msg[0].base = &iov;
+        in_msg[0].len = sizeof(struct tfm_crypto_pack_iovec);
+        in_msg[1].base = &cipher_msg;
+        in_msg[1].len = sizeof(cipher_msg);
 
-        //a call to cipher encrypt setup 
+        out_msg[0].base = &original_hello_msg;
+        out_msg[0].len = out_msg_size;
+
+        //a call to cipher decrypt setup 
+
         iov.function_id = TFM_CRYPTO_CIPHER_DECRYPT_SETUP_SID; 
-        iov.op_handle = op_handle.handle;
-        iov.alg = PSA_ALG_CFB;
-        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_cypher_setup, 1);
+        iov.op_handle = op_handle_dec.handle;
+        
+        
+        status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_dec_cypher_setup, 1);
 
         if (status != PSA_SUCCESS){
             LOG_INFFMT("Decrypt setup failed\r\n");
@@ -184,17 +213,41 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
             }
 
         else LOG_INFFMT("Decrypt setup successful\r\n");
-
-
-
-
-
-
-
-
-
-
         
+        //a call to set Initialization vector(IV) 
+        iov.function_id = TFM_CRYPTO_CIPHER_SET_IV_SID;
+        iov.op_handle = op_handle_dec.handle;
+        in_iv[1].base = &iv;
+
+        // status = psa_call(0x40000100U,PSA_IPC_CALL,in_iv, 2, out_iv2, 1);
+
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Set IV failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Set IV successful\r\n");
+
+        // //a call to decrypt x blocks
+        iov.function_id = TFM_CRYPTO_CIPHER_UPDATE_SID;
+        
+
+        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 2, out_msg, 1);
+        if (status != PSA_SUCCESS){
+            LOG_INFFMT("Cipher update failed\r\n");
+            return PSA_ERROR_PROGRAMMER_ERROR;
+            }
+
+        else LOG_INFFMT("Cipher update successful\r\n");
+
+        LOG_INFFMT("%s \r\n", cipher_msg);
+        LOG_INFFMT("%s \r\n", original_hello_msg);
+
+        //finish cipher
+        iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
+        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);
+
+
         //destroy key
         iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
         status = psa_call(0x40000100U,PSA_IPC_CALL,destroy_in, 1, NULL, 0);
