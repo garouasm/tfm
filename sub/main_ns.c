@@ -154,16 +154,29 @@ void send_test()
    
     char str1[] = "str1";
 	char str2[] = "str2";
-	char str3[128], str4[128];
+	uint8_t hello_msg[sizeof("Hello World")];
+    unsigned char cipher_msg[sizeof(hello_msg)];
+    unsigned char original_msg[sizeof(hello_msg)];
+
 	struct psa_invec invecs[2] = {{str1, sizeof(str1)},
 									  {str2, sizeof(str2)}};
-	struct psa_outvec outvecs[2] = {{str3, sizeof(str3)},
-										{str4, sizeof(str4)}};
+	struct psa_outvec outvecs[3];
+    outvecs[0].base = &hello_msg;
+    outvecs[1].base = &cipher_msg;
+    outvecs[2].base = &original_msg;
+
+    outvecs[0].len = sizeof(hello_msg);
+    outvecs[1].len = sizeof(hello_msg);
+    outvecs[2].len = sizeof(hello_msg);
+
     psa_handle_t handle;
 
     LOG_MSG("Send call...\r\n");
 
-    status = psa_call(0x40000101U, PSA_IPC_CALL, invecs, 2, outvecs, 2);
+    status = psa_call(0x40000101U, PSA_IPC_CALL, NULL, 0, outvecs, 3);
+    LOG_MSG("Original msg: %s \r\n", hello_msg);
+    LOG_MSG("Encrypted msg: %s \r\n", cipher_msg);
+    LOG_MSG("Decrypted msg: %s \r\n", original_msg);
     LOG_MSG("psa call success \r\n");
 
 }
@@ -203,7 +216,7 @@ int main(void)
 
     (void) osThreadNew(thread_func, NULL, &thread_attr);
 
-    LOG_MSG("Non-Secure system starting...\r\n");
+    //LOG_MSG("Non-Secure system starting...\r\n");
     //(void) osKernelStart(); nao deixa correr o resto do programa
     send_test();
     /* Reached only in case of error */

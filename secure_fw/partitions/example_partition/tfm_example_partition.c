@@ -25,6 +25,9 @@
  */
 psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 { 
+     struct psa_outvec ns_out[3];
+     size_t out_len = PSA_MAX_IOVEC, i;
+    
     psa_status_t status = PSA_ERROR_CONNECTION_REFUSED;
 
     struct tfm_crypto_pack_iovec iov;
@@ -78,9 +81,11 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     out_iv[0].len = iv_size;
 
     //initialize encryption structures
+
     const uint8_t hello_msg[] = "Hello World";
     size_t out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(hello_msg));
     unsigned char cipher_msg[out_msg_size];
+
     struct psa_invec in_msg[2];
     struct psa_outvec out_msg[2];
 
@@ -101,6 +106,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     //initialize decrypt cipher structures
     struct psa_outvec out_dec_cypher_setup[1];
     uint8_t original_hello_msg[out_msg_size];
+
     psa_cipher_operation_t op_handle_dec = PSA_CIPHER_OPERATION_INIT;
     out_dec_cypher_setup[0].base = &op_handle_dec;
     out_dec_cypher_setup[0].len = sizeof(uint32_t);
@@ -171,7 +177,6 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
             LOG_INFFMT("Cipher update failed\r\n");
             return PSA_ERROR_PROGRAMMER_ERROR;
             }
-
         //else LOG_INFFMT("Cipher update successful\r\n");
 
         // LOG_INFFMT("%s \r\n", hello_msg);
@@ -189,6 +194,7 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
        
 ////////////////////////////////////////////DECRYPTION//////////////////////////////////////////////////////////////
          //initialize decryption structures
+        struct psa_outvec out_msg_dec[1];
         out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(cipher_msg));
 
         in_msg[0].base = &iov;
@@ -196,14 +202,12 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         in_msg[1].base = &cipher_msg;
         in_msg[1].len = sizeof(cipher_msg);
 
-        out_msg[0].base = &original_hello_msg;
-        out_msg[0].len = out_msg_size;
+        out_msg_dec[0].base = &original_hello_msg;
+        out_msg_dec[0].len = out_msg_size;
 
         //a call to cipher decrypt setup 
-
         iov.function_id = TFM_CRYPTO_CIPHER_DECRYPT_SETUP_SID; 
         iov.op_handle = op_handle_dec.handle;
-        
         
         status = psa_call(0x40000100U,PSA_IPC_CALL,invecs, 1, out_dec_cypher_setup, 1);
 
@@ -232,17 +236,35 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
         iov.function_id = TFM_CRYPTO_CIPHER_UPDATE_SID;
         
 
-        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 2, out_msg, 1);
+        status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 2, out_msg_dec, 1);
         if (status != PSA_SUCCESS){
             LOG_INFFMT("Cipher update failed\r\n");
             return PSA_ERROR_PROGRAMMER_ERROR;
             }
-
+            
         // else LOG_INFFMT("Cipher update successful\r\n");
 
         //LOG_INFFMT("%s \r\n", cipher_msg);
         //LOG_INFFMT("%s \r\n", original_hello_msg);
 
+ 
+
+        //send to the ns client the message outputs
+        ns_out[0].base = &hello_msg;
+        ns_out[1].base = &cipher_msg;
+        ns_out[2].base = &original_hello_msg;
+
+               /* Check the number of out_vec filled */
+        while ((out_len > 0) && (msg->out_size[out_len - 1] == 0)) {
+        out_len--;
+    }
+        for (i = 0; i < out_len; i++)
+        {
+            ns_out[i].len = sizeof(hello_msg);
+            psa_write(msg->handle, i, ns_out[i].base, ns_out[i].len);
+        }
+        
+        
         //finish cipher
         iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
         status = psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);
