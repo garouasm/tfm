@@ -23,7 +23,7 @@ psa_status_t psa_its_set(psa_storage_uid_t uid,
         { .base = p_data, .len = data_length },
         { .base = &create_flags, .len = sizeof(create_flags) }
     };
-
+    in_vec[1].len = data_length;
     status = psa_call(TFM_INTERNAL_TRUSTED_STORAGE_SERVICE_HANDLE, TFM_ITS_SET,
                       in_vec, IOVEC_LEN(in_vec), NULL, 0);
 

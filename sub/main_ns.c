@@ -5,6 +5,7 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
+
  */
 
 #include "psa_manifest/sid.h"
@@ -31,7 +32,7 @@
 
 
 #define PSA_KEY_ID_USER_2 ((psa_key_id_t)0x22222222)
-
+#define print(x, y) for (size_t i = 0; i < y; i++){printf("%c",x[i]);}printf("\r\n")
 
 
 /**
@@ -152,33 +153,32 @@ void send_test()
 {
     psa_status_t status = PSA_ERROR_CONNECTION_REFUSED;
    
-    char str1[] = "str1";
-	char str2[] = "str2";
 	uint8_t hello_msg[sizeof("Hello World")];
     unsigned char cipher_msg[sizeof(hello_msg)];
     unsigned char original_msg[sizeof(hello_msg)];
 
-	struct psa_invec invecs[2] = {{str1, sizeof(str1)},
-									  {str2, sizeof(str2)}};
+	//struct psa_invec invecs[2] = {{str1, sizeof(str1)},
+	//								  {str2, sizeof(str2)}};
 	struct psa_outvec outvecs[3];
     outvecs[0].base = &hello_msg;
     outvecs[1].base = &cipher_msg;
     outvecs[2].base = &original_msg;
 
     outvecs[0].len = sizeof(hello_msg);
-    outvecs[1].len = sizeof(hello_msg);
-    outvecs[2].len = sizeof(hello_msg);
+    outvecs[1].len = sizeof(cipher_msg);
+    outvecs[2].len = sizeof(original_msg);
 
     psa_handle_t handle;
 
     LOG_MSG("Send call...\r\n");
 
     status = psa_call(0x40000101U, PSA_IPC_CALL, NULL, 0, outvecs, 3);
-    LOG_MSG("Original msg: %s \r\n", hello_msg);
-    LOG_MSG("Encrypted msg: %s \r\n", cipher_msg);
-    LOG_MSG("Decrypted msg: %s \r\n", original_msg);
-    LOG_MSG("psa call success \r\n");
-
+    printf("Original msg: ");
+    print(hello_msg, sizeof(hello_msg));
+    printf("Encrypted msg: ");
+    print(cipher_msg, sizeof(cipher_msg));
+    printf("Decrypted msg: ");
+    print(original_msg, sizeof(original_msg));
 }
 
 /**
@@ -223,3 +223,4 @@ int main(void)
     for (;;) {
     }
 }
+

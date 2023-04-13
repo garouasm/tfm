@@ -70,7 +70,7 @@ set(TFM_PLAT_SPECIFIC_MULTI_CORE_COMM   OFF         CACHE BOOL      "Whether to 
 set(DEBUG_AUTHENTICATION                CHIP_DEFAULT CACHE STRING   "Debug authentication setting. [CHIP_DEFAULT, NONE, NS_ONLY, FULL")
 set(SECURE_UART1                        OFF         CACHE BOOL      "Enable secure UART1")
 
-set(CRYPTO_HW_ACCELERATOR               OFF         CACHE BOOL      "Whether to enable the crypto hardware accelerator on supported platforms")
+set(CRYPTO_HW_ACCELERATOR               ON         CACHE BOOL      "Whether to enable the crypto hardware accelerator on supported platforms")
 
 set(OTP_NV_COUNTERS_RAM_EMULATION       OFF         CACHE BOOL      "Enable OTP/NV_COUNTERS emulation in RAM. Has no effect on non-default implementations of the OTP and NV_COUNTERS")
 set(TFM_NS_NV_COUNTER_AMOUNT            0           CACHE STRING    "How many NS NV counters are enabled")
@@ -107,9 +107,9 @@ set(TFM_PARTITION_PROTECTED_STORAGE     OFF         CACHE BOOL      "Enable Prot
 set(PS_ENCRYPTION                       ON          CACHE BOOL      "Enable encryption for Protected Storage partition")
 set(PS_CRYPTO_AEAD_ALG                  PSA_ALG_GCM CACHE STRING    "The AEAD algorithm to use for authenticated encryption in Protected Storage")
 
-set(TFM_PARTITION_INTERNAL_TRUSTED_STORAGE OFF      CACHE BOOL      "Enable Internal Trusted Storage partition")
+set(TFM_PARTITION_INTERNAL_TRUSTED_STORAGE ON      CACHE BOOL      "Enable Internal Trusted Storage partition")
 
-set(TFM_PARTITION_CRYPTO                OFF         CACHE BOOL      "Enable Crypto partition")
+set(TFM_PARTITION_CRYPTO                ON         CACHE BOOL      "Enable Crypto partition")
 set(CRYPTO_TFM_BUILTIN_KEYS_DRIVER      ON          CACHE BOOL      "Whether to allow crypto service to store builtin keys. Without this, ALL builtin keys must be stored in a platform-specific location")
 
 set(TFM_PARTITION_INITIAL_ATTESTATION   OFF         CACHE BOOL      "Enable Initial Attestation partition")

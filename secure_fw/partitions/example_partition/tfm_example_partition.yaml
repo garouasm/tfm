@@ -12,7 +12,7 @@
   "priority": "NORMAL",
   "model": "SFN",
   "entry_init": "tfm_example_partition_init",
-  "stack_size": "0x200",
+  "stack_size": "0x1000",
   "services": [
     { 
       "name": "TFM_EXAMPLE_SERVICE",
