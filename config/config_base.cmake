@@ -28,6 +28,7 @@ set(TFM_PROFILE                         ""          CACHE STRING    "Profile to 
 set(TFM_FIH_PROFILE                     OFF         CACHE STRING    "Fault injection hardening profile [OFF, LOW, MEDIUM, HIGH]")
 set(CONFIG_TFM_SPM_BACKEND              "SFN"       CACHE STRING    "The SPM backend [IPC, SFN]")
 set(TFM_PARTITION_EXAMPLE               ON          CACHE BOOL      "Enable example secure partition")
+set(TFM_PARTITION_TA_ATTESTATION        ON          CACHE BOOL      "Enable attestation ta secure partition")
 
 # An NSPE client_id is provided by the NSPE OS via the SPM or directly by the SPM.
 # When `TFM_NS_MANAGE_NSID` is `ON`, TF-M supports NSPE OS providing NSPE client_id.
@@ -109,10 +110,10 @@ set(PS_CRYPTO_AEAD_ALG                  PSA_ALG_GCM CACHE STRING    "The AEAD al
 
 set(TFM_PARTITION_INTERNAL_TRUSTED_STORAGE ON      CACHE BOOL      "Enable Internal Trusted Storage partition")
 
-set(TFM_PARTITION_CRYPTO                ON         CACHE BOOL      "Enable Crypto partition")
+set(TFM_PARTITION_CRYPTO                ON          CACHE BOOL      "Enable Crypto partition")
 set(CRYPTO_TFM_BUILTIN_KEYS_DRIVER      ON          CACHE BOOL      "Whether to allow crypto service to store builtin keys. Without this, ALL builtin keys must be stored in a platform-specific location")
 
-set(TFM_PARTITION_INITIAL_ATTESTATION   OFF         CACHE BOOL      "Enable Initial Attestation partition")
+set(TFM_PARTITION_INITIAL_ATTESTATION   ON          CACHE BOOL      "Enable Initial Attestation partition")
 set(SYMMETRIC_INITIAL_ATTESTATION       OFF         CACHE BOOL      "Use symmetric crypto for inital attestation")
 set(ATTEST_INCLUDE_TEST_CODE            OFF         CACHE BOOL      "Include minimal development tests in the initial attestation regression test suite")
 set(ATTEST_KEY_BITS                     256         CACHE STRING    "The size of the initial attestation key in bits")

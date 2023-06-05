@@ -133,6 +133,20 @@
            "*tfm_*partition_example.*"
         ]
       }
+    },
+    {
+      "description": "TF-M TA ATTESTATION Partition",
+      "manifest": "../secure_fw/partitions/ta_attestation/tfm_ta_attestation.yaml",
+      "output_path": "secure_fw/partitions/ta_attestation",
+      "conditional": "TFM_PARTITION_TA_ATTESTATION",
+      "version_major": 0,
+      "version_minor": 1,
+      "pid": 276,
+      "linker_pattern": {
+        "library_list": [
+           "*tfm_*partition_ta_attestation.*"
+        ]
+      }
     }
   ]
 }
