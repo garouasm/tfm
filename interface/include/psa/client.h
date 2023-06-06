@@ -62,7 +62,9 @@ extern "C" {
 /**
  * An IPC message type that indicates a generic client request.
  */
-#define PSA_IPC_CALL                (0)
+#define PSA_IPC_CALL                            (0)
+#define PSA_TA_ATTESTATION_CALL                 (1)
+#define PSA_TEST_TA_ATTESTATION_CALL            (2)
 
 typedef int32_t psa_handle_t;
 
