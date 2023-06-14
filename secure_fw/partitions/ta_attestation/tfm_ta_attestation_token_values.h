@@ -539,25 +539,4 @@
  */
 #define ATTEST_TOKEN_MAX_SIZE  0x250
 
-typedef struct q_useful_buf_c
-{
-   const void *ptr;
-   size_t len;
-} UsefulBufC;
-
-struct attest_token_iat_simple_t {
-    struct q_useful_buf_c nonce; /* byte string */
-    struct q_useful_buf_c instance_id; /* byte string */
-    struct q_useful_buf_c boot_seed; /* byte string */
-    struct q_useful_buf_c cert_ref; /* text string */
-    struct q_useful_buf_c implementation_id; /* byte string */
-    uint32_t              security_lifecycle;
-    int32_t               client_id;
-    struct q_useful_buf_c profile_definition; /* text string */
-    struct q_useful_buf_c verif_serv; /* text string */
-    struct q_useful_buf_c hash_algo_id; /* text string */
-    struct q_useful_buf_c plat_config; /* byte string */
-    uint32_t              item_flags;
-};
-
 #endif /* __ATTEST_TOKEN_TEST_VALUES_H__ */

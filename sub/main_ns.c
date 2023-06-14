@@ -177,6 +177,14 @@ void send_test()
     print(original_msg, sizeof(original_msg));
 }
 
+void send_test_ta_attestation() 
+{
+    LOG_MSG("Send call to TA Attestation...\r\n");
+
+    psa_call(0x40000104U, PSA_TEST_TA_ATTESTATION_CALL, NULL, 0, NULL, 0);
+}
+
+
 /**
  * \brief main() function
  */
@@ -214,7 +222,7 @@ int main(void)
 
     //LOG_MSG("Non-Secure system starting...\r\n");
     //(void) osKernelStart(); nao deixa correr o resto do programa
-    send_test();
+    send_test_ta_attestation();
     /* Reached only in case of error */
     for (;;) {
     }

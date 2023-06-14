@@ -23,6 +23,7 @@ add_library(tfm_app_rot_partition_ta_attestation STATIC)
 target_sources(tfm_app_rot_partition_ta_attestation
     PRIVATE
         tfm_ta_attestation.c
+        
 )
 
 target_sources(tfm_app_rot_partition_ta_attestation
@@ -35,6 +36,14 @@ target_sources(tfm_partitions
          ${CMAKE_BINARY_DIR}/generated/secure_fw/partitions/ta_attestation/auto_generated/load_info_tfm_ta_attestation.c
 )
 
+ target_sources(tfm_app_rot_partition_ta_attestation 
+     INTERFACE 
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode_common.c
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode_asymmetric.c
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_test.c
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/ext/qcbor_util/qcbor_util.c
+
+ )
 target_include_directories(tfm_app_rot_partition_ta_attestation
     PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
@@ -47,11 +56,32 @@ target_include_directories(tfm_partitions
         ${CMAKE_BINARY_DIR}/generated/secure_fw/partitions/ta_attestation
 )
 
+target_include_directories(tfm_app_rot_partition_ta_attestation
+    PUBLIC 
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/secure
+        ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/ext/qcbor_util
+    PRIVATE
+        .
+)
+
+
 target_link_libraries(tfm_app_rot_partition_ta_attestation
     PRIVATE
         psa_interface
         platform_s
         tfm_sprt
+)
+
+target_link_libraries(tfm_app_rot_partition_ta_attestation
+    PUBLIC
+        tfm_qcbor_s
+        tfm_t_cose_s
+        tfm_attestation_defs
+        tfm_boot_status
+        tfm_psa_rot_partition_crypto
+        #tfm_test_framework_s
+        tfm_test_framework_common
 )
 
 ############################ Secure API ########################################

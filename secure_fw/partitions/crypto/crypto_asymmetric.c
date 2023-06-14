@@ -73,7 +73,7 @@ psa_status_t tfm_crypto_asymmetric_sign_interface(psa_invec in_vec[],
         size_t hash_length = in_vec[1].len;
         const uint8_t *signature = in_vec[2].base;
         size_t signature_length = in_vec[2].len;
-
+        
         return psa_verify_hash(*encoded_key, iov->alg, hash, hash_length,
                                signature, signature_length);
     }

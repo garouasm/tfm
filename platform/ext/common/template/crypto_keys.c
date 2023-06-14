@@ -57,7 +57,7 @@ enum tfm_plat_err_t tfm_plat_builtin_key_get_usage(psa_key_id_t key_id,
 #if defined(TEST_S_ATTESTATION) || defined(TEST_NS_ATTESTATION)
         /* So that the tests can validate created tokens */
 #ifdef TEST_S_ATTESTATION
-        case TFM_SP_SECURE_TEST_PARTITION:
+        //case TFM_SP_SECURE_TEST_PARTITION:
 #endif /* TEST_S_ATTESTATION */
 #ifdef TEST_NS_ATTESTATION
         case TFM_NS_PARTITION_ID:
