@@ -21,7 +21,7 @@
 #include "attest_token_test_values.h"
 #include "attest_token_test.h"
 #include "qcbor_util.h"
-#include "q_useful_buf.h"
+#include "q_useful_buf.h" //
 // #include "../../../build/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_tests_common.h"
 // #include "../../../build/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode.h"
 // #include "../../../build/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_test.h"
