@@ -56,7 +56,7 @@
 #define TOTAL_RAM_SIZE          (_SRAM1_SIZE_MAX+_SRAM2_SIZE_MAX )
 /* 192 + 64 Kbytes - BOOT info */
 /* boot info are placed and locked at top of SRAM2  */
-#define S_TOTAL_RAM_SIZE        (0x1fc00 ) /*! size require for Secure part */
+#define S_TOTAL_RAM_SIZE        (0x2fc00) /*! size require for Secure part */
 #define NS_TOTAL_RAM_SIZE       (TOTAL_RAM_SIZE - S_TOTAL_RAM_SIZE)
 
 #ifdef BL2

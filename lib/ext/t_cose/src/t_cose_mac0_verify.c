@@ -39,7 +39,7 @@ short_circuit_verify(int32_t               cose_alg_id,
     /* approximate stack use on 32-bit machine: local use: 16 bytes */
     enum t_cose_err_t         return_value;
     struct t_cose_crypto_hash hash_ctx;
-    Q_USEFUL_BUF_MAKE_STACK_UB(tag_buffer, T_COSE_CRYPTO_HMAC_TAG_MAX_SIZE);
+    Q_USEFUL_BUF_MAKE_STACK_UB(tag_buffer, T_COSE_CRYPTO_HMAC256_TAG_SIZE);
     struct q_useful_buf_c     tag;
     int32_t                   hash_alg_id;
 

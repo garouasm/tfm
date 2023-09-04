@@ -574,6 +574,33 @@ psa_status_t psa_mac_verify_setup(psa_mac_operation_t *operation,
     };
 
     return API_DISPATCH(in_vec, out_vec);
+
+    LOG_INFFMT("[DBG][TA ATTESTATION] Test\r\n");
+}
+
+psa_status_t psa_mac_verify_setup_alt(psa_mac_operation_t *operation,
+                                  psa_key_id_t key,
+                                  psa_algorithm_t alg)
+{
+    struct tfm_crypto_pack_iovec iov = {
+        .function_id = TFM_CRYPTO_MAC_VERIFY_SETUP_SID,
+        .key_id = key,
+        .alg = alg,
+        .op_handle = operation->handle,
+    };
+
+    psa_invec in_vec[] = {
+        {.base = &iov, .len = sizeof(struct tfm_crypto_pack_iovec)},
+    };
+    psa_outvec out_vec[] = {
+        {.base = &(operation->handle), .len = sizeof(uint32_t)},
+    };
+
+    psa_call(TFM_ATTESTATION_SERVICE_HANDLE, 1003,
+                      in_vec, IOVEC_LEN(in_vec),
+                      out_vec, IOVEC_LEN(out_vec));
+
+    LOG_INFFMT("[DBG][TA ATTESTATION] Test\r\n");
 }
 
 psa_status_t psa_mac_update(psa_mac_operation_t *operation,

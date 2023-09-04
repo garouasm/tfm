@@ -134,6 +134,8 @@
         PSA_FUNCTION_NAME(psa_mac_sign_setup)
 #define psa_mac_verify_setup \
         PSA_FUNCTION_NAME(psa_mac_verify_setup)
+//#define psa_mac_verify_setup_alt\
+//        PSA_FUNCTION_NAME(psa_mac_verify_setup_alt)
 #define psa_mac_update \
         PSA_FUNCTION_NAME(psa_mac_update)
 #define psa_mac_sign_finish \

@@ -1390,6 +1390,10 @@ psa_status_t psa_mac_verify_setup(psa_mac_operation_t *operation,
                                   psa_key_id_t key,
                                   psa_algorithm_t alg);
 
+psa_status_t psa_mac_verify_setup_alt(psa_mac_operation_t *operation,
+                                  psa_key_id_t key,
+                                  psa_algorithm_t alg);
+
 /** Add a message fragment to a multipart MAC operation.
  *
  * The application must call psa_mac_sign_setup() or psa_mac_verify_setup()

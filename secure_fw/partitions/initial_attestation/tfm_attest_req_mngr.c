@@ -7,8 +7,11 @@
 
 #include <string.h>
 
+#include "psa_manifest/sid.h"
+
 #include "psa/error.h"
 #include "psa/client.h"
+#include "psa_manifest/sid.h"
 #include "psa/initial_attestation.h"
 #include "psa/crypto.h"
 #include "attest.h"
@@ -19,6 +22,7 @@
 #include "psa_manifest/tfm_initial_attestation.h"
 #include "region_defs.h"
 #include "tfm_attest_defs.h"
+#include "tfm_crypto_defs.h"
 
 #define ECC_P256_PUBLIC_KEY_SIZE PSA_KEY_EXPORT_ECC_PUBLIC_KEY_MAX_SIZE(256)
 
@@ -127,6 +131,41 @@ static psa_status_t psa_attest_get_token_size(const psa_msg_t *msg)
     return status;
 }
 
+
+
+static psa_status_t psa_attest_get_token_validated(const psa_msg_t *msg)
+{
+    psa_mac_operation_t operation;
+    psa_key_id_t key;
+    psa_algorithm_t alg;
+    psa_status_t status = PSA_SUCCESS;
+
+    size_t in_msg_size = msg->in_size[0];
+    struct tfm_crypto_pack_iovec iov = {0};
+    
+    psa_read(msg->handle, 0, &iov, in_msg_size);
+
+    psa_invec in_vec[] = {
+        {.base = &iov, .len = sizeof(struct tfm_crypto_pack_iovec)},
+    };
+    psa_outvec out_vec[] = {
+        {.base = &(operation.handle), .len = sizeof(uint32_t)},
+    };
+
+    //receber o do lado direito e fazer isto
+
+    psa_call(0x40000100U, 0,
+                          in_vec, IOVEC_LEN(in_vec),
+                      out_vec, IOVEC_LEN(out_vec));
+    //tfm_crypto_call_srv(msg);
+    //tfm_crypto_api_dispatcher(in_vec, 1, out_vec, 1);
+
+
+    psa_write(msg->handle, 0, out_vec[0].base, msg->out_size[0]);
+
+    return PSA_SUCCESS;
+}
+
 psa_status_t tfm_attestation_service_sfn(const psa_msg_t *msg)
 {
     switch (msg->type) {
@@ -134,6 +173,8 @@ psa_status_t tfm_attestation_service_sfn(const psa_msg_t *msg)
         return psa_attest_get_token(msg);
     case TFM_ATTEST_GET_TOKEN_SIZE:
         return psa_attest_get_token_size(msg);
+    case TFM_ATTEST_VALIDATE_TOKEN:
+        return psa_attest_get_token_validated(msg);
     default:
         return PSA_ERROR_NOT_SUPPORTED;
     }

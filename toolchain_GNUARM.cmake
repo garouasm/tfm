@@ -52,7 +52,7 @@ macro(tfm_toolchain_reset_compiler_flags)
         -funsigned-char
         -mthumb
         -nostdlib
-        -Os
+        -Og
         $<$<COMPILE_LANGUAGE:C>:-std=c99>
         $<$<COMPILE_LANGUAGE:CXX>:-std=c++11>
         $<$<OR:$<BOOL:${TFM_DEBUG_SYMBOLS}>,$<BOOL:${TFM_CODE_COVERAGE}>>:-g>

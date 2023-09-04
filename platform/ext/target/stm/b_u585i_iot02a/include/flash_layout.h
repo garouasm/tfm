@@ -240,7 +240,7 @@
 #define TFM_HAL_PS_FLASH_AREA_SIZE    FLASH_PS_AREA_SIZE
 #define PS_RAM_FS_SIZE                TFM_HAL_PS_FLASH_AREA_SIZE
 /* Number of physical erase sectors per logical FS block */
-#define TFM_HAL_PS_SECTORS_PER_BLOCK  (1)
+#define TFM_HAL_PS_SECTORS_PER_BLOCK  (3)
 /* Smallest flash programmable unit in bytes */
 #define TFM_HAL_PS_PROGRAM_UNIT       (0x10)
 

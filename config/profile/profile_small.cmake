@@ -20,7 +20,7 @@ set(TFM_PARTITION_INTERNAL_TRUSTED_STORAGE ON    CACHE BOOL "Enable Internal Tru
 set(TFM_PARTITION_PLATFORM                 OFF   CACHE BOOL "Enable the TF-M Platform partition")
 set(TFM_PARTITION_PROTECTED_STORAGE        OFF   CACHE BOOL "Enable Protected Storage partition")
 set(TFM_PARTITION_INITIAL_ATTESTATION      ON    CACHE BOOL "Enable Initial Attestation partition")
-set(SYMMETRIC_INITIAL_ATTESTATION          ON    CACHE BOOL "Use symmetric crypto for inital attestation")
+set(SYMMETRIC_INITIAL_ATTESTATION          OFF    CACHE BOOL "Use symmetric crypto for inital attestation")
 set(TFM_PARTITION_FIRMWARE_UPDATE          OFF   CACHE BOOL "Enable firmware update partition")
 
 ################################## Advanced options #############################

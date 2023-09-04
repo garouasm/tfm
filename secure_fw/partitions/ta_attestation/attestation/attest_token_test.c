@@ -102,12 +102,10 @@ int token_main_alt(uint32_t option_flags,
         return (int)return_value;
     }
 
-#ifdef DUMP_TOKEN
-    dump_token(completed_token);
-#endif
-
     return 0;
 }
+
+
 
 #ifdef INCLUDE_TEST_CODE
 static const uint8_t expected_minimal_token_bytes[] = {MINIMAL_TOKEN};
