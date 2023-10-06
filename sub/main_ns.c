@@ -179,9 +179,45 @@ void send_test()
 
 void send_test_ta_attestation() 
 {
-    LOG_MSG("Send call to TA Attestation...\r\n");
+    uint8_t nonce[100];
+    uint8_t nonce_encrypted[100];
+    uint8_t token[592];
 
-    psa_call(0x40000104U, PSA_TA_ATTESTATION_CALL, NULL, 0, NULL, 0);
+	struct psa_invec invecs[1];
+	struct psa_outvec outvecs_nonce[1];
+    struct psa_outvec outvecs_token[1];
+    struct psa_outvec outvecs_nonce_encrypted[1];
+    
+    outvecs_nonce[0].base = &nonce;
+    outvecs_token[0].base = &token;
+    outvecs_nonce_encrypted[0].base = &token;
+
+    outvecs_nonce[0].len = 100;
+    outvecs_token[0].len = 592;
+    outvecs_nonce_encrypted[0].len = 100;
+
+    psa_call(0x40000101U, PSA_CRYPTO_GENERATE_KEY_CALL, NULL, 0, NULL, 0);
+    printf("GENERATE KEY TO ENCRYPT DONE\r\n");
+
+    printf("CREATE NONCE");
+    psa_call(0x40000104U, PSA_TA_ATTESTATION_CREATE_NONCE_CALL, NULL, 0, outvecs_nonce, 1);
+    printf("NONCE ENCRYPTED: ");
+    print(nonce, outvecs_nonce[0].len);
+
+    invecs[0].base = &nonce;
+    invecs[0].len = outvecs_nonce[0].len;
+
+    printf("encrypt2\r\n");
+    psa_call(0x40000101U, PSA_CRYPTO_ENCRYPTION_CALL, invecs, 1, outvecs_nonce_encrypted, 1);
+    printf("encrypt done2\r\n");
+
+    invecs[0].base = outvecs_nonce_encrypted[0].base;
+    invecs[0].len = outvecs_nonce_encrypted[0].len;
+
+    printf("CREATE TOKEN");
+    psa_call(0x40000104U, PSA_TA_ATTESTATION_CREATE_TOKEN_CALL, invecs, 1, outvecs_token, 1);
+    printf("TOKEN ENCRYPTED: ");
+    print(token, outvecs_token[0].len);
 }
 
 /**
@@ -219,12 +255,15 @@ int main(void)
 
     (void) osThreadNew(thread_func, NULL, &thread_attr);
 
-    //LOG_MSG("Non-Secure system starting...\r\n");
+    LOG_MSG("Non-Secure system starting...\r\n");
     //(void) osKernelStart(); nao deixa correr o resto do programa
     send_test_ta_attestation();
     /* Reached only in case of error */
     for (;;) {
     }
 }
+
+
+
 
 

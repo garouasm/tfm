@@ -114,8 +114,8 @@ set(TFM_PARTITION_CRYPTO                ON          CACHE BOOL      "Enable Cryp
 set(CRYPTO_TFM_BUILTIN_KEYS_DRIVER      ON          CACHE BOOL      "Whether to allow crypto service to store builtin keys. Without this, ALL builtin keys must be stored in a platform-specific location")
 
 set(TFM_PARTITION_INITIAL_ATTESTATION   ON          CACHE BOOL      "Enable Initial Attestation partition")
-set(SYMMETRIC_INITIAL_ATTESTATION       OFF         CACHE BOOL      "Use symmetric crypto for inital attestation")
-set(ATTEST_INCLUDE_TEST_CODE            OFF         CACHE BOOL      "Include minimal development tests in the initial attestation regression test suite")
+set(SYMMETRIC_INITIAL_ATTESTATION       ON         CACHE BOOL      "Use symmetric crypto for inital attestation")
+set(ATTEST_INCLUDE_TEST_CODE            ON         CACHE BOOL      "Include minimal development tests in the initial attestation regression test suite")
 set(ATTEST_KEY_BITS                     256         CACHE STRING    "The size of the initial attestation key in bits")
 set(TEST_S_ATTESTATION                  OFF         CACHE BOOL "")
 set(TEST_NS_ATTESTATION                 OFF         CACHE BOOL "")

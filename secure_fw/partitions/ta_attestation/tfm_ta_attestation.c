@@ -27,7 +27,7 @@
 #include "tfm_ta_attestation_token_values.h"
 
 #define PSA_INITIAL_ATTEST_TOKEN_MAX_SIZE (0x250)
-// #define print(x, y) for (size_t i = 0; i < y; i++){printf("%c", *x);x++;}printf("\r\n")
+// #define print2(x, y) for (size_t i = 0; i < y; i++){printf("%c", *x);x++;}printf("\r\n")
 #define printif(x)                                        \
     if (x != PSA_SUCCESS)                                 \
     {                                                     \
@@ -120,47 +120,6 @@ static void dump_token(struct q_useful_buf_c *token)
      iov->function_id = TFM_CRYPTO_GENERATE_KEY_SID;
      psa_call(0x40000100U, PSA_IPC_CALL, invecs, 2, outvecs, 1);
  }
-
-
-void generate_key_sign(struct tfm_crypto_pack_iovec* iov,
-                     struct psa_invec invecs[], struct psa_outvec outvecs[]){
-
-    psa_key_id_t user_key;
-    struct psa_invec destroy_in[1];
-    iov->key_id = PSA_KEY_ID_SIGN;
-    iov->alg = PSA_ALG_IS_HASH_AND_SIGN(PSA_ALG_ANY_HASH);
-
-    //initialize key attributes
-    psa_key_attributes_t key_attributes = psa_key_attributes_init();
-
-    psa_set_key_lifetime(&key_attributes, PSA_KEY_LIFETIME_PERSISTENT);
-    psa_set_key_usage_flags(&key_attributes, (PSA_KEY_USAGE_SIGN_MESSAGE | PSA_KEY_USAGE_VERIFY_MESSAGE | PSA_KEY_USAGE_SIGN_HASH | PSA_KEY_USAGE_VERIFY_HASH));
-    psa_set_key_algorithm(&key_attributes, PSA_ALG_IS_HASH_AND_SIGN(PSA_ALG_ANY_HASH));
-    psa_set_key_type(&key_attributes, PSA_KEY_TYPE_HMAC);
-    psa_set_key_bits(&key_attributes, 256);
-    psa_set_key_id(&key_attributes, PSA_KEY_ID_SIGN);
-
-    destroy_in[0].base = iov;
-    destroy_in[0].len = sizeof(struct tfm_crypto_pack_iovec);
-
-    invecs[0].base = iov;
-    invecs[0].len = sizeof(struct tfm_crypto_pack_iovec);
-
-    invecs[1].base = &key_attributes;
-    invecs[1].len = sizeof(struct psa_client_key_attributes_s);
-
-    outvecs[0].base = &user_key;
-    outvecs[0].len = sizeof(psa_key_id_t);
-
-    // a call to destroy a previously stored key
-    iov->function_id = TFM_CRYPTO_DESTROY_KEY_SID;
-    psa_call(0x40000100U, PSA_IPC_CALL, destroy_in, 1, NULL, 0);
-
-    //a call to generate key
-    iov->function_id = TFM_CRYPTO_GENERATE_KEY_SID;
-    psa_call(0x40000100U, PSA_IPC_CALL, invecs, 2, outvecs, 1);
-}
-
 
 static int_fast16_t check_simple_claims(
     const struct attest_token_iat_simple_t *simple_claims)
@@ -802,14 +761,22 @@ psa_status_t tfm_ta_attestation_service_sfn(const psa_msg_t *msg)
     uint8_t nonce[PSA_INITIAL_ATTEST_CHALLENGE_SIZE_64];
     psa_status_t status;
     struct psa_invec invec[2];
+    struct psa_invec invec_nonce_encrypted[1];
     struct psa_outvec outvec[1];
+    struct psa_outvec outvecs_nonce[1];
+    struct psa_outvec outvecs_nonce_encrypted[1];
+    struct psa_outvec outvecs_token_encrypted[1];
 
     struct psa_aead_operation_s operation_ctx;
     struct tfm_crypto_pack_iovec iov;
 
     int_fast16_t ret;
     struct q_useful_buf_c tmp;
+    struct q_useful_buf_c tmp_nonce;
+    struct q_useful_buf_c nonce_enc;
+    struct q_useful_buf_c tmp_token;
     struct q_useful_buf_c completed_token;
+    struct q_useful_buf_c token_encrypted;
     Q_USEFUL_BUF_MAKE_STACK_UB(token_storage, ATTEST_TOKEN_MAX_SIZE);
     struct attest_token_decode_context token_decode;
     uint32_t token_encode_options;
@@ -826,9 +793,15 @@ psa_status_t tfm_ta_attestation_service_sfn(const psa_msg_t *msg)
     uint8_t iak_buf[SYMMETRIC_IAK_MAX_SIZE];
     size_t iak_len;
 
+    size_t out_msg_nonce_size = 0;
+    uint8_t out_msg_nonce[100];
+
+    size_t out_msg_token_size = 0;
+    uint8_t out_msg_token[592];
+
     switch (msg->type)
     {
-    case PSA_TA_ATTESTATION_CALL:
+    case PSA_TA_ATTESTATION_CREATE_NONCE_CALL:
 
         LOG_INFFMT("[DBG][TA ATTESTATION] SFN OPERATION 1\r\n");
         generate_key_nonce(&iov, invec, outvec);
@@ -865,25 +838,92 @@ psa_status_t tfm_ta_attestation_service_sfn(const psa_msg_t *msg)
         printif(status);
         LOG_INFFMT("[DBG][TA ATTESTATION] NONCE CREATED\r\n");
 
+        //encriptar aqui
+
+        //invec_nonce_encrypted[0].base = tmp.ptr;
+        //invec_nonce_encrypted[0].len = tmp.len;
+
+        //outvecs_nonce_encrypted[0].base = nonce_enc.ptr;
+        //outvecs_nonce_encrypted[0].len = tmp.len;
+
+        //psa_call(0x40000101U, PSA_CRYPTO_GENERATE_KEY_CALL, NULL, 0, NULL, 0);
+        //printf("GENERATE KEY TO ENCRYPT DONE\r\n");
+
+        //printf("encrypt2\r\n");
+        //psa_call(0x40000101U, PSA_CRYPTO_ENCRYPTION_CALL, invec_nonce_encrypted, 1, outvecs_nonce_encrypted, 1);
+        //printf("encrypt done2\r\n");
+
+        //psa_write(msg->handle, 0, outvecs_nonce_encrypted[0].base, outvecs_nonce_encrypted[0].len);
+        psa_write(msg->handle, 0, tmp.ptr, tmp.len);
+
+        return PSA_SUCCESS;
+
+    case PSA_TA_ATTESTATION_CREATE_TOKEN_CALL:
+
+        out_msg_nonce_size= msg->in_size[0];
+        psa_read(msg->handle, 0, &out_msg_nonce, out_msg_nonce_size);
+
+        //invec_nonce_encrypted[0].base = &out_msg_nonce;
+        //invec_nonce_encrypted[0].len = out_msg_nonce_size;
+
+        //outvecs_nonce[0].base = tmp_nonce.ptr;
+        //outvecs_nonce[0].len = out_msg_nonce_size;
+
+        //printf("decrypt2\r\n");
+        //psa_call(0x40000101U, PSA_CRYPTO_DECRYPTION_CALL, invec_nonce_encrypted, 1, outvecs_nonce, 1);
+        //printf("decrypt2 done\r\n");
+
+        //tmp_nonce.ptr = outvecs_nonce[0].base;
+        //tmp_nonce.len = outvecs_nonce[0].len;
+
         /* --- */
         token_encode_options = 0;
-        //tmp = TOKEN_TEST_VALUE_NONCE;
+
+        tmp_nonce.ptr = &out_msg_nonce;
+        tmp_nonce.len = out_msg_nonce_size;
+        
+
         // ta_attestation(TOKEN_OPT_SHORT_CIRCUIT_SIGN | TOKEN_OPT_OMIT_CLAIMS, tmp, token_storage, &completed_token);
         // dump_token(&completed_token);
         // LOG_INFFMT("[DBG][TA ATTESTATION] TOKEN CREATED\r\n");
         status = token_main_alt(token_encode_options,
-                                tmp,
+                                tmp_nonce,
                                 token_storage,
                                 &completed_token);
         printif(status);
         dump_token(&completed_token);
         LOG_INFFMT("[DBG][TA ATTESTATION] TOKEN CREATED\r\n");
 
-        /* --- */
+        //invec[0].base = completed_token.ptr;
+        //invec[0].len = completed_token.len;
 
+        //outvecs_token_encrypted[0].base = token_encrypted.ptr;
+        //outvecs_token_encrypted[0].len = token_encrypted.len;
+
+        //printf("encrypt3\r\n");
+        //psa_call(0x40000101U, PSA_CRYPTO_ENCRYPTION_CALL, invec, 1, outvecs_token_encrypted, 1);
+        //printf("encrypt done3\r\n");
+
+        //psa_write(msg->handle, 0, token_encrypted.ptr, token_encrypted.len);
+        psa_write(msg->handle, 0, completed_token.ptr, completed_token.len);
+
+        return PSA_SUCCESS;
+
+    case PSA_TA_ATTESTATION_VERIFICATION_CALL:
+
+        out_msg_token_size= msg->in_size[0];
+        psa_read(msg->handle, 0, &out_msg_token, out_msg_token_size);
+
+        /* --- */
+        LOG_INFFMT("[DBG][TA ATTESTATION] VALIDATION\r\n");
         token_decode_options = 0;
+        tmp_token.ptr = &out_msg_token;
+        tmp_token.len = out_msg_token_size;
+
+        //dump_token(&out_msg_token);
+
         attest_token_decode_init(&token_decode, token_decode_options);
-        status = attest_token_decode_validate_token(&token_decode, completed_token);
+        status = attest_token_decode_validate_token(&token_decode, tmp_token);
         printif(status);
 
         /* --- */
@@ -961,12 +1001,6 @@ psa_status_t tfm_ta_attestation_service_sfn(const psa_msg_t *msg)
 
         return PSA_SUCCESS;
 
-    case PSA_TEST_TA_ATTESTATION_CALL:
-        // ret = decode_test_normal_sig();
-        // printif(ret);
-        LOG_INFFMT("TA Attestation test sucess\r\n");
-
-        return PSA_SUCCESS;
     default:
         LOG_INFFMT("TA Attestation error\r\n");
         return PSA_ERROR_NOT_SUPPORTED;

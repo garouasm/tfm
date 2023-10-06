@@ -18,7 +18,7 @@
 #include "tfm_sp_log.h"
 #include "tfm_its_defs.h"
 
-#define PSA_KEY_ID_USER_1 ((psa_key_id_t)0x1)
+#define PSA_KEY_ID_USER_1 ((psa_key_id_t)0x2)
 #define PSA_KEY_ID_USER_2 ((psa_key_id_t)0x22222222)
 #define IV_SIZE 16
 
@@ -154,15 +154,21 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
 { 
     size_t out_msg_size = msg->in_size[0];
     uint8_t hello_msg[out_msg_size];
-    psa_read(msg->handle, 0, &hello_msg, out_msg_size);
+
+    size_t encrypt_msg_size = 0;
+    uint8_t encrypt_msg[592];
+
+    //psa_read(msg->handle, 0, &hello_msg, out_msg_size);
     size_t out_len = PSA_MAX_IOVEC, i;
     struct psa_outvec ns_out[3];
     struct tfm_crypto_pack_iovec iov;
     uint8_t iv[IV_SIZE];
 
     uint8_t cipher_msg[out_msg_size];
-    uint8_t stored_msg[out_msg_size];
-    uint8_t original_hello_msg[out_msg_size];
+    //uint8_t stored_msg[out_msg_size];
+    //uint8_t original_hello_msg[out_msg_size];
+
+    uint8_t decrypted_msg[out_msg_size];
 
     //initialize generate key call structures
     struct psa_invec invecs[2];
@@ -171,49 +177,62 @@ psa_status_t tfm_example_service_sfn(const psa_msg_t *msg)
     psa_storage_uid_t encrypted_data_uid = 2;
     size_t *pdata_size = NULL;
     
-
-    generate_key(&iov, invecs, outvecs);
-    
     switch (msg->type) {
     case PSA_IPC_CALL:
-
-        encrypt(&iov, hello_msg, invecs, outvecs, cipher_msg, out_msg_size, iv);
-
-        store(cipher_msg, out_msg_size, encrypted_data_uid);
-        load(stored_msg, out_msg_size, encrypted_data_uid, pdata_size);
-
-        out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(stored_msg));
-        decrypt(&iov, invecs, outvecs, stored_msg, iv, original_hello_msg, out_msg_size);
-
-        //send to the ns client the message outputs
-        ns_out[0].base = &hello_msg;
-        ns_out[0].len = sizeof(hello_msg);
-
-        ns_out[1].base = &stored_msg;
-        ns_out[1].len = sizeof(stored_msg);
-
-        ns_out[2].base = &original_hello_msg;
-        ns_out[2].len = sizeof(original_hello_msg);
-
-        /* Check the number of out_vec filled */
-        //while ((out_len > 0) && (msg->out_size[out_len - 1] == 0)) {
-        //    out_len--;
+        //generate_key(&iov, invecs, outvecs);
+        //encrypt(&iov, hello_msg, invecs, outvecs, cipher_msg, out_msg_size, iv);
+//
+        //store(cipher_msg, out_msg_size, encrypted_data_uid);
+        //load(stored_msg, out_msg_size, encrypted_data_uid, pdata_size);
+//
+        //out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(stored_msg));
+        //decrypt(&iov, invecs, outvecs, stored_msg, iv, original_hello_msg, out_msg_size);
+//
+        ////send to the ns client the message outputs
+        //ns_out[0].base = &hello_msg;
+        //ns_out[0].len = sizeof(hello_msg);
+//
+        //ns_out[1].base = &stored_msg;
+        //ns_out[1].len = sizeof(stored_msg);
+//
+        //ns_out[2].base = &original_hello_msg;
+        //ns_out[2].len = sizeof(original_hello_msg);
+//
+        ///* Check the number of out_vec filled */
+        ////while ((out_len > 0) && (msg->out_size[out_len - 1] == 0)) {
+        ////    out_len--;
+        ////}
+        //for (i = 0; i < 3; i++)
+        //{
+        //    ns_out[i].len = sizeof(hello_msg);
+        //    psa_write(msg->handle, i, ns_out[i].base, ns_out[i].len);
         //}
-        for (i = 0; i < 3; i++)
-        {
-            ns_out[i].len = sizeof(hello_msg);
-            psa_write(msg->handle, i, ns_out[i].base, ns_out[i].len);
-        }
-        /*
-        iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
-        psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);*/
-        
-        //destroy key
-        iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
-        psa_call(0x40000100U, PSA_IPC_CALL, invecs, 1, NULL, 0);
+        ///*
+        //iov.function_id = TFM_CRYPTO_CIPHER_FINISH_SID;
+        //psa_call(0x40000100U,PSA_IPC_CALL,in_msg, 1, out_msg, 2);*/
+        //
+        ////destroy key
+        //iov.function_id = TFM_CRYPTO_DESTROY_KEY_SID;
+        //psa_call(0x40000100U, PSA_IPC_CALL, invecs, 1, NULL, 0);
+//
+        //return PSA_SUCCESS;
 
+    case PSA_CRYPTO_GENERATE_KEY_CALL: 
+        generate_key(&iov, invecs, outvecs);
         return PSA_SUCCESS;
-
+    case PSA_CRYPTO_ENCRYPTION_CALL:
+        encrypt_msg_size = msg->in_size[0];
+        psa_read(msg->handle, 0, &encrypt_msg, encrypt_msg_size);
+        encrypt(&iov, encrypt_msg, invecs, outvecs, cipher_msg, encrypt_msg_size, iv);
+        psa_write(msg->handle, 0, cipher_msg, encrypt_msg_size);
+        return PSA_SUCCESS;
+    case PSA_CRYPTO_DECRYPTION_CALL:
+        encrypt_msg_size = msg->in_size[0];
+        psa_read(msg->handle, 0, &encrypt_msg, encrypt_msg_size);
+        out_msg_size = PSA_CIPHER_UPDATE_OUTPUT_SIZE(PSA_KEY_TYPE_AES, PSA_ALG_CFB, sizeof(encrypt_msg_size));
+        decrypt(&iov, invecs, outvecs, encrypt_msg, iv, decrypted_msg, encrypt_msg_size);
+        psa_write(msg->handle, 0, decrypted_msg, encrypt_msg_size);
+        return PSA_SUCCESS;
     default:
         LOG_INFFMT("Secure World error\r\n");
         return PSA_ERROR_NOT_SUPPORTED;
