@@ -20,6 +20,7 @@ add_subdirectory(partitions)
 target_include_directories(tfm_config
     INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/partitions/checker
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/crypto
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/firmware_update
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/initial_attestation
@@ -28,6 +29,8 @@ target_include_directories(tfm_config
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/protected_storage
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/example_partition
         ${CMAKE_CURRENT_SOURCE_DIR}/partitions/ta_attestation
+        ${CMAKE_CURRENT_SOURCE_DIR}/partitions/ta_communication
+        ${CMAKE_CURRENT_SOURCE_DIR}/partitions/ta_communication_rep
         ${CMAKE_CURRENT_SOURCE_DIR}/spm/include
         ${CMAKE_BINARY_DIR}/generated/interface/include
 )

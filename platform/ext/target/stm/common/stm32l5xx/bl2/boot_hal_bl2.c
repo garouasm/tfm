@@ -248,6 +248,12 @@ int32_t boot_platform_init(void)
     Error_Handler();
   }
 #endif
+
+  //USER ADDED
+    __HAL_RCC_SPI2_CLK_ENABLE();
+
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+
   return 0;
 }
 

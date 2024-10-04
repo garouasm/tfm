@@ -193,7 +193,10 @@ SECTIONS
 
     } > RAM
     Image$$ER_CODE$$Base = __Vectors ;
-    Image$$ER_CODE$$Limit = __etext + + SIZEOF(.data);
+    Image$$ER_CODE$$Limit = __etext + SIZEOF(.data); 
+  
+
+
     .bss :
     {
         . = ALIGN(4);

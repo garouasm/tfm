@@ -80,7 +80,7 @@ target_sources(platform_s
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_dma.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_pwr.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_pwr_ex.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_gpio.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_exti.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_uart.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_uart_ex.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_rcc.c
@@ -90,6 +90,10 @@ target_sources(platform_s
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_rng.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_rng_ex.c
     PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_msp.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_spi.c #added
+        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_spi_ex.c #added
+        ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_gpio.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_hash.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_hash_ex.c
         ${CMAKE_CURRENT_SOURCE_DIR}/hal/Src/stm32l5xx_hal_pka.c
@@ -206,6 +210,7 @@ target_sources(tfm_spm
         ${CMAKE_CURRENT_SOURCE_DIR}/secure/target_cfg.c
         ${CMAKE_CURRENT_SOURCE_DIR}/secure/tfm_hal_isolation.c
         ${CMAKE_CURRENT_SOURCE_DIR}/secure/tfm_hal_platform.c
+        $<$<OR:$<BOOL:${CONFIG_TFM_FLIH_API}>,$<BOOL:${CONFIG_TFM_SLIH_API}>>:${CMAKE_CURRENT_SOURCE_DIR}/secure/tfm_interrupts.c>
 )
 
 install(FILES

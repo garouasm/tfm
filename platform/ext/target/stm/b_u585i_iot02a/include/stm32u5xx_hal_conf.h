@@ -32,6 +32,7 @@ extern "C" {
 /**
   * @brief This is the list of modules to be used in the HAL driver
   */
+#define HAL_DRIVER
 #define HAL_MODULE_ENABLED
 /* #define HAL_ADC_MODULE_ENABLED */
 /* #define HAL_COMP_MODULE_ENABLED */
@@ -44,7 +45,7 @@ extern "C" {
 /* #define HAL_DCMI_MODULE_ENABLED */
 #define HAL_DMA_MODULE_ENABLED
 /* #define HAL_DMA2D_MODULE_ENABLED */
-/* #define HAL_EXTI_MODULE_ENABLED */
+#define HAL_EXTI_MODULE_ENABLED 
 /* #define HAL_FDCAN_MODULE_ENABLED */
 #define HAL_FLASH_MODULE_ENABLED
 /* #define HAL_FMAC_MODULE_ENABLED */
@@ -76,7 +77,7 @@ extern "C" {
 /* #define HAL_SD_MODULE_ENABLED */
 /* #define HAL_SMARTCARD_MODULE_ENABLED */
 /* #define HAL_SMBUS_MODULE_ENABLED */
-/* #define HAL_SPI_MODULE_ENABLED */
+ #define HAL_SPI_MODULE_ENABLED 
 /* #define HAL_SRAM_MODULE_ENABLED */
 /* #define HAL_TIM_MODULE_ENABLED */
 /* #define HAL_TSC_MODULE_ENABLED */

@@ -213,6 +213,9 @@ __weak void HAL_MspDeInit(void)
    */
 }
 
+
+
+
 /**
   * @brief This function configures the source of the time base:
   *        The time source is configured to have 1ms time base with a dedicated

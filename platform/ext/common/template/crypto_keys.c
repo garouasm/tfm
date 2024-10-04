@@ -52,6 +52,11 @@ enum tfm_plat_err_t tfm_plat_builtin_key_get_usage(psa_key_id_t key_id,
 #ifdef SYMMETRIC_INITIAL_ATTESTATION
             /* Needed to calculate the instance ID */
             *usage |= PSA_KEY_USAGE_EXPORT;
+
+            break;
+        case TFM_TA_ATTESTATION:
+            *usage = PSA_KEY_USAGE_VERIFY_HASH;
+
 #endif /* SYMMETRIC_INITIAL_ATTESTATION */
             break;
 #if defined(TEST_S_ATTESTATION) || defined(TEST_NS_ATTESTATION)
@@ -211,6 +216,7 @@ enum tfm_plat_err_t tfm_plat_load_builtin_keys(void)
         return TFM_PLAT_ERR_SYSTEM_ERR;
     }
     key_id.MBEDTLS_PRIVATE(key_id) = TFM_BUILTIN_KEY_ID_IAK;
+    psa_set_key_usage_flags(&attr, PSA_KEY_USAGE_VERIFY_HASH | PSA_KEY_USAGE_VERIFY_MESSAGE);
     psa_set_key_id(&attr, key_id);
     psa_set_key_bits(&attr, key_bits);
     psa_set_key_algorithm(&attr, algorithm);

@@ -98,7 +98,7 @@ tfm_invalid_config(NOT TFM_FIH_PROFILE IN_LIST TFM_FIH_PROFILE_LIST)
 
 ########################### TF-M initial attestation #####################################
 
-tfm_invalid_config(ATTEST_INCLUDE_TEST_CODE AND NOT (TEST_NS_ATTESTATION OR TEST_S_ATTESTATION))
+# tfm_invalid_config(ATTEST_INCLUDE_TEST_CODE AND NOT (TEST_NS_ATTESTATION OR TEST_S_ATTESTATION))
 
 ######################## TF-M Profile config check #############################
 

@@ -1,0 +1,63 @@
+#-------------------------------------------------------------------------------
+# Copyright (c) 2020-2021, Arm Limited. All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+#-------------------------------------------------------------------------------
+
+{
+  "psa_framework_version": 1.1,
+  "name": "TFM_TA_COMMUNICATION",
+  "type": "APPLICATION-ROT",
+  "priority": "NORMAL",
+  "model": "SFN",
+  "entry_init": "tfm_ta_communication_init",
+  "stack_size": "0x900",
+  "services": [
+    { 
+      "name": "TFM_TA_COMMUNICATION_SERVICE",
+      "sid": "0x0000F190",
+      "non_secure_clients": true,
+      "connection_based": false,
+      "stateless_handle": "auto",
+      "version": 1,
+      "version_policy": "RELAXED",
+      "mm_iovec": "enable",
+    },
+  ],"dependencies": [
+    "TFM_CRYPTO",
+    "TFM_INTERNAL_TRUSTED_STORAGE_SERVICE",
+    "TFM_TA_ATTESTATION_SERVICE",
+    "TFM_EXAMPLE_SERVICE" 
+    # "TFM_TA_COMMUNICATION_REP_SERVICE"
+  ], "irqs": [
+    {
+    "description": "The redundancy interrupt",
+    "name": "R_TIMER",
+    "source": "TIM2_IRQn",
+    "handling": "FLIH"
+    },
+    {
+    "description": "GPIO Interrupt",
+    "name": "GPIO_ATTESTATION",
+    "source": "EXTI2_IRQn",
+    "handling": "FLIH"
+    }
+  ], "mmio_regions": [
+
+    {
+      "name": "TFM_PERIPHERAL_GPIOA",
+        "permission": "READ-WRITE"
+    },
+     {
+      "name": "TFM_PERIPHERAL_SPI1",
+        "permission": "READ-WRITE"
+    },
+    {
+        "name": "TFM_PERIPHERAL_RCC",
+        "permission": "READ-WRITE"
+     }
+  
+    
+  ]
+}

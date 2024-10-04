@@ -29,7 +29,16 @@ set(TFM_FIH_PROFILE                     OFF         CACHE STRING    "Fault injec
 set(CONFIG_TFM_SPM_BACKEND              "SFN"       CACHE STRING    "The SPM backend [IPC, SFN]")
 set(TFM_PARTITION_EXAMPLE               ON          CACHE BOOL      "Enable example secure partition")
 set(TFM_PARTITION_TA_ATTESTATION        ON          CACHE BOOL      "Enable attestation ta secure partition")
+if(MCU_SLAVE)
+set(TFM_PARTITION_TA_COMMUNICATION      OFF          CACHE BOOL      "Enable communication ta secure partition")
+set(TFM_PARTITION_TA_COMMUNICATION_REP  ON        CACHE BOOL      "Enable replicated communication ta secure partition")
+else()
+set(TFM_PARTITION_TA_COMMUNICATION_REP  OFF         CACHE BOOL      "Enable replicated communication ta secure partition")
+set(TFM_PARTITION_TA_COMMUNICATION      ON          CACHE BOOL      "Enable communication ta secure partition")
+endif()
 
+set(TFM_PARTITION_CHECKER               OFF          CACHE BOOL      "Enable checker module for redundancy")
+set(CONFIG_TFM_FLIH_API                 ON          CACHE BOOL       "Set flih API")
 # An NSPE client_id is provided by the NSPE OS via the SPM or directly by the SPM.
 # When `TFM_NS_MANAGE_NSID` is `ON`, TF-M supports NSPE OS providing NSPE client_id.
 set(TFM_NS_MANAGE_NSID                  OFF         CACHE BOOL      "Support NSPE OS providing NSPE client_id")
@@ -68,7 +77,7 @@ set(PROJECT_CONFIG_HEADER_FILE          "${CMAKE_SOURCE_DIR}/config/config_base.
 set(NUM_MAILBOX_QUEUE_SLOT              1           CACHE BOOL      "Number of mailbox queue slots")
 set(TFM_PLAT_SPECIFIC_MULTI_CORE_COMM   OFF         CACHE BOOL      "Whether to use a platform specific inter-core communication instead of mailbox in dual-cpu topology")
 
-set(DEBUG_AUTHENTICATION                CHIP_DEFAULT CACHE STRING   "Debug authentication setting. [CHIP_DEFAULT, NONE, NS_ONLY, FULL")
+set(DEBUG_AUTHENTICATION                FULL CACHE STRING   "Debug authentication setting. [CHIP_DEFAULT, NONE, NS_ONLY, FULL")
 set(SECURE_UART1                        OFF         CACHE BOOL      "Enable secure UART1")
 
 set(CRYPTO_HW_ACCELERATOR               ON         CACHE BOOL      "Whether to enable the crypto hardware accelerator on supported platforms")
@@ -79,6 +88,7 @@ set(TFM_NS_NV_COUNTER_AMOUNT            0           CACHE STRING    "How many NS
 set(PLATFORM_DEFAULT_BL1                ON          CACHE STRING    "Whether to use default BL1 or platform-specific one")
 
 set(PLATFORM_DEFAULT_ATTEST_HAL         ON          CACHE BOOL      "Use default attest hal implementation.")
+set(CLAIM_VALUE_CHECK                   ON          CACHE BOOL      "Use values hardcoded in the token")
 set(PLATFORM_DEFAULT_NV_COUNTERS        ON          CACHE BOOL      "Use default nv counter implementation.")
 set(PLATFORM_DEFAULT_CRYPTO_KEYS        ON          CACHE BOOL      "Use default crypto keys implementation.")
 set(PLATFORM_DEFAULT_ROTPK              ON          CACHE BOOL      "Use default root of trust public key.")
@@ -114,8 +124,8 @@ set(TFM_PARTITION_CRYPTO                ON          CACHE BOOL      "Enable Cryp
 set(CRYPTO_TFM_BUILTIN_KEYS_DRIVER      ON          CACHE BOOL      "Whether to allow crypto service to store builtin keys. Without this, ALL builtin keys must be stored in a platform-specific location")
 
 set(TFM_PARTITION_INITIAL_ATTESTATION   ON          CACHE BOOL      "Enable Initial Attestation partition")
-set(SYMMETRIC_INITIAL_ATTESTATION       OFF         CACHE BOOL      "Use symmetric crypto for inital attestation")
-set(ATTEST_INCLUDE_TEST_CODE            OFF         CACHE BOOL      "Include minimal development tests in the initial attestation regression test suite")
+set(SYMMETRIC_INITIAL_ATTESTATION       ON         CACHE BOOL      "Use symmetric crypto for inital attestation")
+set(ATTEST_INCLUDE_TEST_CODE            ON         CACHE BOOL      "Include minimal development tests in the initial attestation regression test suite")
 set(ATTEST_KEY_BITS                     256         CACHE STRING    "The size of the initial attestation key in bits")
 set(TEST_S_ATTESTATION                  OFF          CACHE BOOL "")
 set(TEST_NS_ATTESTATION                 OFF          CACHE BOOL "")

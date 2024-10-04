@@ -60,8 +60,8 @@
 #define TFM_ERROR_HANDLER_NON_SECURE /*!< Error handler is in Non Secure , this allows regression without jumping   */
 
 /* Run time protections */
-#define TFM_FLASH_PRIVONLY_ENABLE  /*!< Flash Command in Privileged only  */
-#define TFM_BOOT_MPU_PROTECTION    /*!< TFM_SBSFU_Boot uses MPU to prevent execution outside of TFM_SBSFU_Boot code  */
+// #define TFM_FLASH_PRIVONLY_ENABLE  /*!< Flash Command in Privileged only  */
+ #define TFM_BOOT_MPU_PROTECTION    /*!< TFM_SBSFU_Boot uses MPU to prevent execution outside of TFM_SBSFU_Boot code  */
 
 /* Exported types ------------------------------------------------------------*/
 typedef enum

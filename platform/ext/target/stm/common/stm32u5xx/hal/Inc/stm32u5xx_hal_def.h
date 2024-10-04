@@ -30,7 +30,6 @@ extern "C" {
 #if defined (__ARM_FEATURE_CMSE) &&  (__ARM_FEATURE_CMSE == 3U)
 #include <arm_cmse.h>
 #endif /* __ARM_FEATURE_CMSE */
-
 #include "stm32u5xx.h"
 #include "Legacy/stm32_hal_legacy.h"  /* Aliases file for old names compatibility */
 #include <stddef.h>

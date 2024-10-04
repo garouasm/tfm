@@ -65,6 +65,17 @@ extern "C" {
 #define PSA_IPC_CALL                            (0)
 #define PSA_TA_ATTESTATION_CALL                 (1)
 #define PSA_TEST_TA_ATTESTATION_CALL            (2)
+#define PSA_COM_CALL                            (3)
+#define PSA_SPI                                 (4)
+
+#define PSA_TA_ATTESTATION_CREATE_NONCE_CALL    (1)
+#define PSA_TA_ATTESTATION_CREATE_TOKEN_CALL    (2)
+#define PSA_TA_ATTESTATION_VERIFICATION_CALL    (3)
+
+#define PSA_CRYPTO_GENERATE_KEY_CALL            (1)
+#define PSA_CRYPTO_ENCRYPTION_CALL              (2)
+#define PSA_CRYPTO_DECRYPTION_CALL              (3)
+#define PSA_CRYPTO_STORAGE_CALL                 (4)
 
 typedef int32_t psa_handle_t;
 

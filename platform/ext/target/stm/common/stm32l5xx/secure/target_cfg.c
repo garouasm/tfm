@@ -111,7 +111,8 @@ void pinmux_init_cfg(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  GPIOA_S->SECCFGR = 0x0;
+
+  GPIOA_S->SECCFGR = 0x1;
   GPIOB_S->SECCFGR = 0x0;
   GPIOC_S->SECCFGR = 0x0;
   GPIOD_S->SECCFGR = 0x0;
@@ -323,3 +324,47 @@ void ppc_init_cfg(void)
   pinmux_init_cfg();
   /*  all peripheral  are non secured after reset */
 }
+
+struct platform_data_t timer2 = {
+	 TIM2_BASE_S,
+	 TIM3_BASE_S - 1,
+	 -1,
+	 -1
+	 };
+
+struct platform_data_t rcc = {
+	 RCC_BASE_S,
+	 FLASH_R_BASE_S - 1,
+	 -1,
+	 -1
+	 };
+
+struct platform_data_t gpioa = {  
+   GPIOA_BASE_S,
+   GPIOB_BASE_S - 1,
+   -1,
+   -1
+   }; 
+
+struct platform_data_t spi1 = {  
+  SPI1_BASE_S,
+   TIM8_BASE_S - 1,
+   -1,
+   -1
+   }; 
+
+struct platform_data_t spi2 = {
+  SPI2_BASE_S,
+  SPI3_BASE_S - 1,
+-1,
+-1
+}; 
+
+struct platform_data_t gpiod = {
+   GPIOD_BASE_S,
+   GPIOE_BASE_S - 1,
+   -1,
+   -1
+   }; 
+
+  

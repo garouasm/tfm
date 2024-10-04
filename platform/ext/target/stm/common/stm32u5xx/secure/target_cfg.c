@@ -619,3 +619,32 @@ void gtzc_init_cfg(void)
   HAL_GTZC_TZSC_Lock(GTZC_TZSC1_S);
   HAL_GTZC_TZSC_Lock(GTZC_TZSC2_S);
 }
+
+struct platform_data_t timer2 = {
+	 TIM2_BASE_S,
+	 TIM3_BASE_S - 1,
+	 -1,
+	 -1
+	 };
+
+struct platform_data_t rcc = {
+	 RCC_BASE_S,
+	 FLASH_R_BASE_S - 1,
+	 -1,
+	 -1
+	 };
+
+
+struct platform_data_t spi1 = {
+  SPI1_BASE_S,
+  TIM8_BASE_S - 1,
+-1,
+-1
+}; 
+
+struct platform_data_t gpioe = {
+   GPIOE_BASE_S,
+   GPIOF_BASE_S - 1,
+   -1,
+   -1
+   }; 

@@ -11,6 +11,7 @@
 
 #ifndef __TFM_TA_ATTESTATION_TOKEN_TEST_VALUES_H__
 #define __TFM_TA_ATTESTATION_TOKEN_TEST_VALUES_H__
+#define CLAIM_VALUE_CHECK
 
 #include "config_attest.h"
 

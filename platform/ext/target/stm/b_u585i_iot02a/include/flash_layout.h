@@ -20,7 +20,7 @@
 
 #define OSPI_FLASH_TOTAL_SIZE           (0x4000000)  /* 64 MB same as MX25LM51245G_FLASH_SIZE */
 #define OSPI_FLASH_BASE_ADDRESS         (0x70000000) /* same as OCTOSPI1_BASE  */
-#define EXTERNAL_FLASH
+// #define EXTERNAL_FLASH
 /* This header file is included from linker scatter file as well, where only a
  * limited C constructs are allowed. Therefore it is not possible to include
  * here the platform_retarget.h to access flash related defines. To resolve this
@@ -69,12 +69,12 @@
 #endif /* (FLASH_AREA_SCRATCH_OFFSET % FLASH_AREA_IMAGE_SECTOR_SIZE) != 0*/
 
 /* area for bl2 anti roll back counter */
-#define FLASH_BL2_NVCNT_AREA_OFFSET     (FLASH_AREA_SCRATCH_SIZE)
+#define FLASH_BL2_NVCNT_AREA_OFFSET     (FLASH_AREA_SCRATCH_SIZE) //0x10000
 #define FLASH_BL2_NVCNT_AREA_SIZE       (FLASH_AREA_IMAGE_SECTOR_SIZE+FLASH_AREA_IMAGE_SECTOR_SIZE)
 /* Area for downloading bl2 image */
-#define FLASH_AREA_BL2_BIN_OFFSET       (FLASH_BL2_NVCNT_AREA_OFFSET +FLASH_AREA_IMAGE_SECTOR_SIZE)
+#define FLASH_AREA_BL2_BIN_OFFSET       (FLASH_BL2_NVCNT_AREA_OFFSET +FLASH_AREA_IMAGE_SECTOR_SIZE) //0x12000
 /* personal Area Not used */
-#define FLASH_AREA_PERSO_OFFSET         (FLASH_BL2_NVCNT_AREA_OFFSET +FLASH_BL2_NVCNT_AREA_SIZE)
+#define FLASH_AREA_PERSO_OFFSET         (FLASH_BL2_NVCNT_AREA_OFFSET +FLASH_BL2_NVCNT_AREA_SIZE) //0x14000
 #define FLASH_AREA_PERSO_SIZE           (0x0)
 /* control personal area */
 #if (FLASH_AREA_PERSO_OFFSET % FLASH_AREA_IMAGE_SECTOR_SIZE) != 0
@@ -82,7 +82,7 @@
 #endif /* FLASH_AREA_PERSO_OFFSET % FLASH_AREA_IMAGE_SECTOR_SIZE) != 0 */
 
 /* area for BL2 code protected by hdp */
-#define FLASH_AREA_BL2_OFFSET           (FLASH_AREA_PERSO_OFFSET+FLASH_AREA_PERSO_SIZE )
+#define FLASH_AREA_BL2_OFFSET           (FLASH_AREA_PERSO_OFFSET+FLASH_AREA_PERSO_SIZE ) //0x14000
 #define FLASH_AREA_BL2_SIZE             (0x16000)
 /* HDP area end at this address */
 #define FLASH_BL2_HDP_END               (FLASH_AREA_BL2_OFFSET+FLASH_AREA_BL2_SIZE-1)

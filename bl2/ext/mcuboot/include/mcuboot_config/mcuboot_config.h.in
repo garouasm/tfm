@@ -29,7 +29,7 @@ extern "C" {
  */
 #ifndef __BOOTSIM__
 
-#define MCUBOOT_VALIDATE_PRIMARY_SLOT
+// #define MCUBOOT_VALIDATE_PRIMARY_SLOT
 #define MCUBOOT_USE_FLASH_AREA_GET_SECTORS
 #define MCUBOOT_TARGET_CONFIG "flash_layout.h"
 

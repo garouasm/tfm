@@ -2101,14 +2101,15 @@ HAL_StatusTypeDef RTC_EnterInitMode(RTC_HandleTypeDef *hrtc)
 
     tickstart = HAL_GetTick();
     /* Wait till RTC is in INIT state and if Time out is reached exit */
-    while ((READ_BIT(RTC->ICSR, RTC_ICSR_INITF) == 0U) && (status != HAL_TIMEOUT))
-    {
-      if ((HAL_GetTick()  - tickstart) > RTC_TIMEOUT_VALUE)
-      {
-        status = HAL_TIMEOUT;
-        hrtc->State = HAL_RTC_STATE_TIMEOUT;
-      }
-    }
+//    while ((READ_BIT(RTC->ICSR, RTC_ICSR_INITF) == 0U) && (status != HAL_TIMEOUT))
+//    {
+//      //added
+//    //   if ((HAL_GetTick()  - tickstart) > RTC_TIMEOUT_VALUE)
+//    //   {
+//    //     status = HAL_TIMEOUT;
+//    //     hrtc->State = HAL_RTC_STATE_TIMEOUT;
+//    //   }
+//     }
   }
 
   return status;
@@ -2129,11 +2130,12 @@ HAL_StatusTypeDef RTC_ExitInitMode(RTC_HandleTypeDef *hrtc)
   /* If CR_BYPSHAD bit = 0, wait for synchro */
   if (READ_BIT(RTC->CR, RTC_CR_BYPSHAD) == 0U)
   {
-    if (HAL_RTC_WaitForSynchro(hrtc) != HAL_OK)
-    {
-      hrtc->State = HAL_RTC_STATE_TIMEOUT;
-      status = HAL_TIMEOUT;
-    }
+    //added
+//    if (HAL_RTC_WaitForSynchro(hrtc) != HAL_OK)
+//    {
+//      hrtc->State = HAL_RTC_STATE_TIMEOUT;
+//      status = HAL_TIMEOUT;
+//    }
   }
   else /* WA 2.9.6 Calendar initialization may fail in case of consecutive INIT mode entry. */
   {

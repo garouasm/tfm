@@ -147,6 +147,53 @@
            "*tfm_*partition_ta_attestation.*"
         ]
       }
+    },
+    {
+      "description": "TF-M TA COMMUNICATION Partition",
+      "manifest": "../secure_fw/partitions/ta_communication/tfm_ta_communication.yaml",
+      "output_path": "secure_fw/partitions/ta_communication",
+      "conditional": "TFM_PARTITION_TA_COMMUNICATION",
+      "version_major": 0,
+      "version_minor": 1,
+      "pid": 277,
+      "linker_pattern": {
+        "library_list": [
+           "*tfm_*partition_ta_communication.*"
+        ]
+      }
+    },
+    {
+      "description": "TF-M TA COMMUNICATION Replicated Partition",
+      "manifest": "../secure_fw/partitions/ta_communication_rep/tfm_ta_communication_rep.yaml",
+      "output_path": "secure_fw/partitions/ta_communication_rep",
+      "conditional": "TFM_PARTITION_TA_COMMUNICATION_REP",
+      "version_major": 0,
+      "version_minor": 1,
+      "pid": 278,
+      "linker_pattern": {
+        "library_list": [
+           "*tfm_*partition_ta_communication_rep.*"
+        ]
+      }
+    },
+
+    {
+    "description": "TF-M TA Checker",
+      "manifest": "../secure_fw/partitions/checker/tfm_checker.yaml",
+      "output_path": "secure_fw/partitions/checker",
+      "conditional": "TFM_PARTITION_CHECKER",
+      "version_major": 0,
+      "version_minor": 1,
+      "pid": 279,
+      "linker_pattern": {
+        "library_list": [
+          "*tfm_*partition_checker.*"
+        ]
+      }
     }
+
   ]
 }
+
+
+

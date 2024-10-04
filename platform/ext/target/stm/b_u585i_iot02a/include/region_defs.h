@@ -77,7 +77,7 @@
 /* boot info are placed and locked at top of SRAM2  */
 
 #define S_TOTAL_RAM2_SIZE       (_SRAM2_SIZE_MAX) /*! size require for Secure part */
-#define S_TOTAL_RAM1_SIZE       (0x10000)
+#define S_TOTAL_RAM1_SIZE       (0x20000)
 #define S_TOTAL_RAM_SIZE        (S_TOTAL_RAM2_SIZE + S_TOTAL_RAM1_SIZE)
 #define NS_TOTAL_RAM_SIZE       (TOTAL_RAM_SIZE - S_TOTAL_RAM_SIZE)
 

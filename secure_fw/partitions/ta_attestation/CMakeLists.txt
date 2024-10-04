@@ -39,11 +39,12 @@ target_sources(tfm_partitions
  target_sources(tfm_app_rot_partition_ta_attestation 
      INTERFACE 
         # ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode_common.c
-        # ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode_asymmetric.c
+        #${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_decode_asymmetric.c
         # ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/attest_token_test.c
         # ${CMAKE_BINARY_DIR}/lib/ext/tfm_test_repo-src/test/secure_fw/suites/attestation/ext/qcbor_util/qcbor_util.c
         ${CMAKE_CURRENT_SOURCE_DIR}/attestation/attest_token_decode_common.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/attestation/attest_token_decode_asymmetric.c
+        #${CMAKE_CURRENT_SOURCE_DIR}/attestation/attest_token_decode_asymmetric.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/attestation/attest_token_decode_symmetric.c
         ${CMAKE_CURRENT_SOURCE_DIR}/attestation/attest_token_test.c
         ${CMAKE_CURRENT_SOURCE_DIR}/attestation/ext/qcbor_util/qcbor_util.c
 

@@ -7809,6 +7809,11 @@ typedef struct
 #define EXTI_EXTICR4_EXTI15_2               (0x4UL << EXTI_EXTICR4_EXTI15_Pos)      /*!< 0x04000000 */
 #define EXTI_EXTICR4_EXTI15_3               (0x8UL << EXTI_EXTICR4_EXTI15_Pos)      /*!< 0x08000000 */
 
+/*****************  Bit definition for EXTI_LOCKR register  **************/
+#define EXTI_LOCKR_LOCK_Pos                 (0U)
+#define EXTI_LOCKR_LOCK_Msk                 (0x1UL << EXTI_LOCKR_LOCK_Pos)          /*!< 0x00000001 */
+#define EXTI_LOCKR_LOCK                     EXTI_LOCKR_LOCK_Msk    
+
 /*******************  Bit definition for EXTI_IMR1 register  ******************/
 #define EXTI_IMR1_IM0_Pos                   (0U)
 #define EXTI_IMR1_IM0_Msk                   (0x1UL << EXTI_IMR1_IM0_Pos)            /*!< 0x00000001 */

@@ -37,6 +37,10 @@ extern "C" {
 const uintptr_t partition_named_mmio_list[] = {
     (uintptr_t)TFM_PERIPHERAL_TIMER0,
     (uintptr_t)TFM_PERIPHERAL_STD_UART,
+    (uintptr_t) TFM_PERIPHERAL_TIMER2,
+	(uintptr_t) TFM_PERIPHERAL_RCC,
+    (uintptr_t) TFM_PERIPHERAL_GPIOA,
+    (uintptr_t) TFM_PERIPHERAL_SPI1
 };
 
 #ifdef __cplusplus

@@ -1612,20 +1612,21 @@ static void flash_priv_cfg(void)
     FLOW_CONTROL_STEP(uFlowProtectValue, FLOW_STEP_FLASH_P_EN, FLOW_CTRL_FLASH_P_EN);
 #endif /*  TFM_FLASH_PRIVONLY_ENABLE */
   }
+  //added
   /* verification stage */
-  else
-  {
-    if (HAL_FLASHEx_GetPrivMode() != FLASH_SPRIV_DENIED)
-    {
-      Error_Handler();
-    }
-    else
-    {
-      /* Execution stopped if flow control failed */
-      FLOW_CONTROL_STEP(uFlowProtectValue, FLOW_STEP_FLASH_P_CH, FLOW_CTRL_FLASH_P_CH);
-    }
-  }
-}
+//   else
+//   {
+//     if (HAL_FLASHEx_GetPrivMode() != FLASH_SPRIV_DENIED)
+//     {
+//       Error_Handler();
+//     }
+//     else
+//     {
+//       /* Execution stopped if flow control failed */
+//       FLOW_CONTROL_STEP(uFlowProtectValue, FLOW_STEP_FLASH_P_CH, FLOW_CTRL_FLASH_P_CH);
+//     }
+//   }
+// }
 
 /* Place code in a specific section */
 #if defined(__ICCARM__)
@@ -1648,11 +1649,11 @@ static void enable_hdp_protection(void)
     SET_BIT(FLASH->SECHDPCR, FLASH_SECHDPCR_HDP1_ACCDIS);
   } while ((FLASH->SECHDPCR & FLASH_SECHDPCR_HDP1_ACCDIS) != FLASH_SECHDPCR_HDP1_ACCDIS);
 
-  if ((FLASH->SECHDPCR & FLASH_SECHDPCR_HDP1_ACCDIS) != FLASH_SECHDPCR_HDP1_ACCDIS)
-  {
-    /* Security issue : execution stopped ! */
-    Error_Handler();
-  }
+  // if ((FLASH->SECHDPCR & FLASH_SECHDPCR_HDP1_ACCDIS) != FLASH_SECHDPCR_HDP1_ACCDIS)
+  // {
+  //   /* Security issue : execution stopped ! */
+  //   Error_Handler();
+  // }
 #endif /* TFM_HDP_PROTECT_ENABLE */
 }
 
@@ -1789,6 +1790,7 @@ static void active_tamper(void)
         RTCHandle.Init.OutPutType     = RTC_OUTPUT_TYPE_PUSHPULL;
         RTCHandle.Init.OutPutPullUp   = RTC_OUTPUT_PULLUP_NONE;
 
+        //added
         if (HAL_RTC_Init(&RTCHandle) != HAL_OK)
         {
             Error_Handler();

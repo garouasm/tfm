@@ -70,9 +70,9 @@ struct t_cose_mac0_sign_ctx {
  *
  * Initialize the \ref t_cose_mac0_sign_ctx context. Typically, no
  * \c option_flags are needed and 0 is passed. A \c cose_algorithm_id
- * must always be given. See \ref T_COSE_OPT_SHORT_CIRCUIT_TAG and
+ * must always be given. See \ref T
+ *_COSE_OPT_SHORT_CIRCUIT_TAG and
  * related for possible option flags.
- *
  * The algorithm ID space is from
  * [COSE (RFC8152)](https://tools.ietf.org/html/rfc8152) and the
  * [IANA COSE Registry](https://www.iana.org/assignments/cose/cose.xhtml).

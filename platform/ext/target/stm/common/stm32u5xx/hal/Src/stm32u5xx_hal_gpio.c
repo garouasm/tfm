@@ -231,6 +231,7 @@ void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, const GPIO_InitTypeDef *pGPIO_Init)
         tmp &= ~(LPGPIO_MODER_MOD0 << position);
         tmp |= ((pGPIO_Init->Mode & GPIO_MODE_OUTPUT_PP) << position);
         GPIOx->MODER = tmp;
+      
 
         /* Save GPIO Port and pin index */
         p_gpio = LPGPIO_Map[position].GPIO_PORT;
